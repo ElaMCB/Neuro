@@ -1,17 +1,16 @@
-# Neuro language definition
+# FORCE Neuro classification
 *.neuro linguist-language=Neuro
 *.neuro linguist-detectable=true
 *.neuro -linguist-documentation
+*.neuro -linguist-vendored
 
-# Python files (our compiler implementation)
+# Mark Python files specifically
+*.py linguist-language=Python
 *.py linguist-detectable=true
-src/neuro/*.py linguist-detectable=true
 
-# Documentation files
+# Explicitly mark documentation
+*.md linguist-language=Markdown
 *.md linguist-documentation=true
-README.md linguist-documentation=true
-ROADMAP.md linguist-documentation=true
-CONTRIBUTING.md linguist-documentation=true
 
-# Force language detection
-* linguist-detectable
+# Override any automatic detection
+* linguist-detectable=true
