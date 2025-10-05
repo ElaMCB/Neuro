@@ -1,0 +1,22 @@
+pipeline DataProcessingExample {
+    goal: "Process and clean raw sensor data for analysis"
+    
+    data: stream('kafka://sensors/raw')
+          -> window(size='5min', slide='1min')
+          -> clean_data(
+                handle_missing='interpolate',
+                remove_outliers='iqr',
+                normalize='standard'
+            )
+          -> feature_engineering([
+                rolling_mean(window='10min'),
+                frequency_analysis(),
+                correlation_features()
+            ])
+          -> validate_schema()
+          -> store('parquet://sensors/processed')
+    
+    monitor: [data_quality, processing_latency, feature_drift]
+    
+    output: "Clean, processed sensor data stream"
+}
