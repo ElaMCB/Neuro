@@ -1,14 +1,13 @@
-# Define Neuro file extensions
+# Define Neuro file extensions and force detection
 *.neuro linguist-language=Neuro
 *.neuro linguist-detectable=true
+*.neuro -linguist-documentation
 
-# Optional: Hide Python files from language stats (if you want Neuro to dominate)
+# Mark actual documentation files
+*.md linguist-documentation=true
+README.md linguist-documentation=true
+ROADMAP.md linguist-documentation=true
+CONTRIBUTING.md linguist-documentation=true
+
+# Hide Python files for now
 *.py linguist-detectable=false
-src/neuro/*.py linguist-detectable=true
-
-# Mark directories
-examples/ linguist-documentation=false
-docs/ linguist-documentation=true
-
-# Force language detection
-* linguist-detectable=true
