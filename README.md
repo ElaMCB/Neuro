@@ -1,10 +1,5 @@
 # Neuro
 A language for AI: Making AI development accessible through intent-driven programming
-# Neuro: The Intent-Driven Language for AI
-
-> "What if you could describe what you want, not how to build it?"
-
-Neuro is a new programming language where you declare **what** you want to achieve with AI, and the compiler figures out **how** to make it happen.
 
 # Neuro: The Intent-Driven Language for AI
 
@@ -15,7 +10,7 @@ Neuro is a new programming language where you declare **what** you want to achie
 
 > "What if you could describe what you want, not how to build it?"
 
-Neuro is a revolutionary programming language where you declare what you want to achieve with AI, and the compiler figures out how to make it happen. Stop writing boilerplate code and start declaring your intent.
+Neuro is a new programming language where you declare what you want to achieve with AI, and the compiler figures out how to make it happen. Stop writing boilerplate code and start declaring your intent.
 
 ## Quick Example
 
