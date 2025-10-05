@@ -1,13 +1,17 @@
-# Define Neuro file extensions and force detection
+# Neuro language definition
 *.neuro linguist-language=Neuro
 *.neuro linguist-detectable=true
 *.neuro -linguist-documentation
 
-# Mark actual documentation files
+# Python files (our compiler implementation)
+*.py linguist-detectable=true
+src/neuro/*.py linguist-detectable=true
+
+# Documentation files
 *.md linguist-documentation=true
 README.md linguist-documentation=true
 ROADMAP.md linguist-documentation=true
 CONTRIBUTING.md linguist-documentation=true
 
-# Hide Python files for now
-*.py linguist-detectable=false
+# Force language detection
+* linguist-detectable
