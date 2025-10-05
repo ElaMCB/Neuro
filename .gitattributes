@@ -9,3 +9,6 @@ src/neuro/*.py linguist-detectable=true
 # Mark directories
 examples/ linguist-documentation=false
 docs/ linguist-documentation=true
+
+# Force language detection
+* linguist-detectable=true
