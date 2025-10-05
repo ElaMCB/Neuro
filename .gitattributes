@@ -1,0 +1,11 @@
+# Define Neuro file extensions
+*.neuro linguist-language=Neuro
+*.neuro linguist-detectable=true
+
+# Optional: Hide Python files from language stats (if you want Neuro to dominate)
+*.py linguist-detectable=false
+src/neuro/*.py linguist-detectable=true
+
+# Mark directories
+examples/ linguist-documentation=false
+docs/ linguist-documentation=true
