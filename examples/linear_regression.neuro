@@ -1,3 +1,8 @@
+// Neuro v0.1 - Programming Language
+import tensors
+import gradients
+
+
 pipeline LinearRegressionExample {
     goal: "Demonstrate simple linear regression in Neuro"
     
