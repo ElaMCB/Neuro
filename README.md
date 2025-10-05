@@ -12,6 +12,14 @@ A language for AI: Making AI development accessible through intent-driven progra
 
 Neuro is a new programming language where you declare what you want to achieve with AI, and the compiler figures out how to make it happen. Stop writing boilerplate code and start declaring your intent.
 
+## Documentation
+
+- [Project Roadmap](ROADMAP.md) - Development plans and timeline
+- [Contribution Guide](CONTRIBUTING.md) - How to get involved  
+- [Examples](examples/) - Neuro code examples
+- [Join Discussions](https://github.com/ElaMCB/Neuro/discussions) - Help shape the language
+
+
 ## Quick Example
 
 ```neuro
@@ -23,6 +31,8 @@ pipeline PredictiveMaintenance {
     model: automl_search() -> optimize_for(constraints)
     deploy: as_microservice(on='edge')
 }
+
+
 
 ## Documentation
 
