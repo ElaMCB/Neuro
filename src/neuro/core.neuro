@@ -1,24 +1,134 @@
-// Neuro Core Language Constructs
+// NEURO CORE LANGUAGE - DISTINCT SYNTAX
+// This defines the Neuro programming language primitives
 
-// Tensor operations
-operator @ (a: Tensor, b: Tensor) -> Tensor {
-    return matrix_multiply(a, b)
+namespace neuro.core {
+    // Tensor type system
+    type Tensor<T> = array[dim: dynamic] of T
+    type Model = pipeline -> tensor
+    type Layer = config -> transform
+    type Dataset = source -> stream[tensor]
+    
+    // KEEP your existing operators but add Neuro-specific ones
+    operator @ (a: Tensor, b: Tensor) -> Tensor {
+        return matrix_multiply(a, b)
+    }
+
+    operator + (a: Tensor, b: Tensor) -> Tensor {
+        return elementwise_add(a, b)
+    }
+
+    // ADD Neuro-specific operators that don't look like Python
+    operator --> (data: Tensor, transform: Model) -> Tensor {
+        return transform.forward(data)
+    }
+
+    operator ||> (model: Model, dataset: Dataset) -> TrainingResult {
+        return train_model(model, dataset)
+    }
+
+    operator ▽ (loss: Tensor, params: Tensor) -> Tensor {
+        return compute_gradient(loss, params)
+    }
+
+    operator |> (data: Tensor, pipeline: Pipeline) -> Tensor {
+        return pipeline.process(data)
+    }
+
+    // ENHANCE with Neuro-specific syntax
+    // Intent declarations (unique to Neuro)
+    intent classify with convolutional features
+    intent predict using temporal patterns  
+    intent generate via transformer architecture
+    intent optimize for accuracy and latency
+    intent deploy to edge with quantization
+
+    // Neural layer declarations (more distinct)
+    neural layer Dense(units: int) with activation: string
+    neural layer Conv2D(filters: int, kernel: [int, int]) with stride: int = 1
+    neural layer LSTM(units: int, return_sequences: bool = false)
+    neural layer Attention(heads: int, head_dim: int)
+    neural layer Dropout(rate: float) for regularization
+
+    // Training contexts (unique syntax)
+    train context GradientDescent {
+        optimizer: 'adam',
+        learning_rate: 0.001,
+        epochs: 100,
+        batch_size: 32
+    }
+
+    train context Distributed {
+        strategy: 'mirrored',
+        devices: ['GPU:0', 'GPU:1'],
+        sync: true
+    }
+
+    // Data pipeline operators (distinct from Python)
+    pipeline operator load from source: string
+    pipeline operator transform using mapper: function
+    pipeline operator split into ratios: [float]
+    pipeline operator batch with size: int
+    pipeline operator shuffle with buffer: int
+    pipeline operator cache for performance
+
+    // Automatic differentiation primitives
+    diff primitive forward: tensor -> tensor
+    diff primitive backward: gradient -> gradient
+    diff primitive jacobian: model -> matrix
+
+    // KEEP your existing functions but add Neuro flavor
+    function dense(units: int, activation: string) -> Layer {
+        return Layer(type='dense', units=units, activation=activation)
+    }
+
+    function relu() -> Activation {
+        return Activation(type='relu')
+    }
+
+    function sigmoid() -> Activation {
+        return Activation(type='sigmoid')
+    }
+
+    function softmax() -> Activation {
+        return Activation(type='softmax')
+    }
+
+    function gradient(loss: Tensor, params: List[Tensor]) -> List[Tensor] {
+        return auto_diff(loss, params)
+    }
+
+    // Neuro-specific functions
+    function compile_intent(intent: Intent) -> Pipeline {
+        return neuro_compiler.analyze(intent)
+    }
+
+    function optimize_pipeline(pipeline: Pipeline, target: Device) -> Pipeline {
+        return pipeline_optimizer.optimize(pipeline, target)
+    }
+
+    function deploy_model(model: Model, platform: Platform) -> Endpoint {
+        return deployment_engine.deploy(model, platform)
+    }
+
+    // Domain-specific types
+    type Image = Tensor[height: int, width: int, channels: int]
+    type Text = Tensor[sequence: int, embedding: int]
+    type Audio = Tensor[samples: int, features: int]
+    type Video = Tensor[frames: int] of Image
+
+    // Model composition
+    composite model VisionTransformer {
+        backbone: PatchEmbedding -> TransformerEncoder
+        head: ClassificationHead
+        connect: backbone --> head
+    }
+
+    composite model AutoEncoder {
+        encoder: ConvStack -> Bottleneck
+        decoder: DeconvStack -> Output
+        loss: reconstruction_error(encoder.input, decoder.output)
+    }
 }
 
-operator + (a: Tensor, b: Tensor) -> Tensor {
-    return elementwise_add(a, b)
-}
-
-// Neural network primitives
-function dense(units: int, activation: string) -> Layer {
-    return Layer(type='dense', units=units, activation=activation)
-}
-
-function relu() -> Activation {
-    return Activation(type='relu')
-}
-
-// Automatic differentiation
-function gradient(loss: Tensor, params: List[Tensor]) -> List[Tensor] {
-    return auto_diff(loss, params)
-}
+// Export for compiler
+export neuro.core
