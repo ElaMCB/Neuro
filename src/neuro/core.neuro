@@ -1,0 +1,24 @@
+// Neuro Core Language Constructs
+
+// Tensor operations
+operator @ (a: Tensor, b: Tensor) -> Tensor {
+    return matrix_multiply(a, b)
+}
+
+operator + (a: Tensor, b: Tensor) -> Tensor {
+    return elementwise_add(a, b)
+}
+
+// Neural network primitives
+function dense(units: int, activation: string) -> Layer {
+    return Layer(type='dense', units=units, activation=activation)
+}
+
+function relu() -> Activation {
+    return Activation(type='relu')
+}
+
+// Automatic differentiation
+function gradient(loss: Tensor, params: List[Tensor]) -> List[Tensor] {
+    return auto_diff(loss, params)
+}
