@@ -7,8 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Test from neuro directory
+      run: |
+        cd src/neuro
+        python -c "from compiler import compile_intent; result = compile_intent('find jobs'); print('✅ Test from neuro dir:', len(result))"
     - name: Test from project root
       run: |
         cd src
-        python -c "import neuro; print('✅ Neuro package imports successfully')"
-        python -c "from neuro import compile_intent; result = compile_intent('find jobs'); print('✅ Compile intent works:', len(result))"
+        python -c "import neuro; from neuro import compile_intent; result = compile_intent('find jobs'); print('✅ Test from project root:', len(result))"
