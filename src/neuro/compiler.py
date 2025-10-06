@@ -2,7 +2,11 @@
 Neuro Intent Compiler - Executes structured intents
 """
 
-from parser import Intent  # CHANGED: removed the dot
+# Use absolute import when running from root, relative when running from same directory
+try:
+    from .parser import Intent  # Try relative import first
+except ImportError:
+    from parser import Intent   # Fallback to absolute import
 
 class NeuroCompiler:
     def __init__(self):
@@ -104,7 +108,11 @@ Try being more specific about what you'd like to achieve.
 
 def compile_intent(intent_text: str) -> str:
     """Convenience function: natural language → execution plan"""
-    from .parser import parse_intent
+    try:
+        from .parser import parse_intent
+    except ImportError:
+        from parser import parse_intent
+        
     intent = parse_intent(intent_text)
     compiler = NeuroCompiler()
     return compiler.compile(intent)
