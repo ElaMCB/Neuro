@@ -1,4 +1,4 @@
-# Treat Neuro files as Python for display purposes (temporary)
+# Treat Neuro files as Python for display purposes
 *.neuro linguist-language=Python
 *.neuro linguist-detectable=true
 
@@ -11,3 +11,5 @@
 
 # Vendor directories (optional)
 .github/workflows/ linguist-vendored=true
+
+
