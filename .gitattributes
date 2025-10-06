@@ -1,16 +1,13 @@
-# FORCE Neuro classification
-*.neuro linguist-language=Neuro
+# Treat Neuro files as Python for display purposes (temporary)
+*.neuro linguist-language=Python
 *.neuro linguist-detectable=true
-*.neuro -linguist-documentation
-*.neuro -linguist-vendored
 
-# Mark Python files specifically
+# Ensure Python files are classified correctly  
 *.py linguist-language=Python
-*.py linguist-detectable=true
 
-# Explicitly mark documentation
+# Mark documentation
 *.md linguist-language=Markdown
 *.md linguist-documentation=true
 
-# Override any automatic detection
-* linguist-detectable=true
+# Vendor directories (optional)
+.github/workflows/ linguist-vendored=true
