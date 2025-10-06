@@ -2,7 +2,7 @@
 Neuro Intent Compiler - Executes structured intents
 """
 
-from .parser import Intent
+from parser import Intent  # CHANGED: removed the dot
 
 class NeuroCompiler:
     def __init__(self):
