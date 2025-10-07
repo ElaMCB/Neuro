@@ -1,15 +1,21 @@
-# Treat Neuro files as Python for display purposes
-*.neuro linguist-language=Python
-*.neuro linguist-detectable=true
+# PRIMARY: Force Neuro as the main language
+*.neuro linguist-language=Neuro
+* linguist-language=Neuro
 
-# Ensure Python files are classified correctly  
-*.py linguist-language=Python
+# HIDE: All implementation code from language stats
+/src/ linguist-vendored=true
+/.github/ linguist-vendored=true
+/setup.py linguist-vendored=true
+*.py linguist-vendored=true
 
-# Mark documentation
-*.md linguist-language=Markdown
+# DOCUMENTATION: Mark these as docs, not code
 *.md linguist-documentation=true
+/LICENSE linguist-documentation=true
+/CONTRIBUTING.md linguist-documentation=true
+/ROADMAP.md linguist-documentation=true
 
-# Vendor directories (optional)
-.github/workflows/ linguist-vendored=true
+# NEURO FILES: These are the real source code
+/examples/ linguist-detectable=true
+/specifications/ linguist-detectable=true
 
 
