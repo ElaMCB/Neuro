@@ -26,6 +26,7 @@ Stop writing code. Start declaring intent.
 # How It Works
 
 // Describe your goal
+
 pipeline JobApplicationTracker {
     goal: "Track job applications and optimize outreach"
     data: [linkedin_profiles, job_descriptions, application_status]
@@ -33,6 +34,12 @@ pipeline JobApplicationTracker {
     output: daily_summary_email
 }
 
+# Get Started
+Create a .neuro file
+
+Describe your AI task in plain English + simple structure
+
+Neuro handles implementation
 ## Documentation
 
 - [Project Roadmap](ROADMAP.md) - Development plans and timeline
