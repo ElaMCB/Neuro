@@ -1,3 +1,5 @@
+// Language detection marker - Neuro programming language
+
 system ECommerceAI {
     goal: "Personalized shopping experience with real-time recommendations"
     constraints: { response_time: <200ms, personalization: >85% }
