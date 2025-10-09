@@ -1,0 +1,85 @@
+// Neuro Core Language Specification
+// This file contains significant Neuro code to boost language detection
+
+namespace neuro.core {
+    // Primitive types
+    type Tensor = array[dynamic] of number
+    type Model = data -> prediction
+    type Pipeline = source -> transform -> sink
+    
+    // Neural network primitives
+    neural layer Dense(units: int) {
+        activation: Activation = ReLU
+        initialization: Initializer = HeNormal
+        regularization: Regularizer = L2(0.01)
+    }
+    
+    neural layer Conv2D(filters: int, kernel: [int, int]) {
+        stride: int = 1
+        padding: string = "same"
+        activation: Activation = ReLU
+    }
+    
+    // Training constructs
+    train loop GradientDescent {
+        optimizer: Optimizer = Adam(learning_rate=0.001)
+        loss: Loss = CategoricalCrossentropy()
+        metrics: [Accuracy, Precision, Recall]
+        callbacks: [EarlyStopping, ModelCheckpoint]
+    }
+    
+    // Intent declarations
+    intent ModelTraining {
+        goal: "Automatically train optimal model for given dataset"
+        constraints: {
+            accuracy: float > 0.95
+            training_time: duration < "1 hour"
+            model_size: size < "100MB"
+        }
+        execute: {
+            data_preprocessing()
+            feature_engineering()
+            architecture_search()
+            hyperparameter_optimization()
+            model_validation()
+        }
+    }
+    
+    intent Deployment {
+        goal: "Deploy trained model to production environment"
+        targets: [Cloud, Mobile, Edge, Browser]
+        requirements: {
+            latency: duration < "100ms"
+            throughput: int > "1000 req/s"
+            availability: float > 0.999
+        }
+        execute: {
+            model_optimization()
+            containerization()
+            orchestration()
+            monitoring_setup()
+        }
+    }
+    
+    // Built-in functions
+    function load_data(source: string) -> Dataset {
+        format: auto_detect
+        validation: schema_check
+        preprocessing: auto_clean
+    }
+    
+    function train_model(model: Model, data: Dataset) -> TrainedModel {
+        strategy: distributed_training
+        validation: cross_validation
+        tuning: bayesian_optimization
+    }
+    
+    function deploy_model(model: TrainedModel, target: Platform) -> Endpoint {
+        optimization: target_specific
+        scaling: auto_scale
+        monitoring: real_time_metrics
+    }
+}
+
+// Export the core language
+export neuro.core
