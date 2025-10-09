@@ -68,3 +68,6 @@ pipeline PredictiveMaintenance {
 - [Contribution Guide](CONTRIBUTING.md) - How to get involved  
 - [Examples](examples/) - Neuro code examples
 - [Join Discussions](https://github.com/ElaMCB/Neuro/discussions) - Help shape the language
+
+
+<!-- Language Detection Test -->
