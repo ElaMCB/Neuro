@@ -1,21 +1,22 @@
-# PRIMARY: Force Neuro as the main language
+# Force Neuro language detection
 *.neuro linguist-language=Neuro
-* linguist-language=Neuro
+*.neuro linguist-detectable=true
+*.neuro -linguist-documentation
 
-# HIDE: All implementation code from language stats
-/src/ linguist-vendored=true
-/.github/ linguist-vendored=true
-/setup.py linguist-vendored=true
-*.py linguist-vendored=true
+# Mark ALL Neuro files as code (not documentation)
+examples/*.neuro linguist-detectable=true
+src/neuro/*.neuro linguist-detectable=true
 
-# DOCUMENTATION: Mark these as docs, not code
+# Reduce Python visibility
+*.py linguist-detectable=false
+src/neuro/*.py linguist-detectable=true
+
+# Explicit documentation marking
 *.md linguist-documentation=true
-/LICENSE linguist-documentation=true
-/CONTRIBUTING.md linguist-documentation=true
-/ROADMAP.md linguist-documentation=true
+README.md linguist-documentation=true
+ROADMAP.md linguist-documentation=true
+CONTRIBUTING.md linguist-documentation=true
 
-# NEURO FILES: These are the real source code
-/examples/ linguist-detectable=true
-/specifications/ linguist-detectable=true
-
+# Override any automatic detection
+* linguist-detectable
 
