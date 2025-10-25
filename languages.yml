@@ -1,6 +1,0 @@
-Neuro:
-  type: programming
-  color: "#3572A5"
-  extensions: [".neuro"]
-  tm_scope: source.neuro
-  ace_mode: text
