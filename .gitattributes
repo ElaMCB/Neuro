@@ -1,22 +1,11 @@
-# Force Neuro language detection
+# Neuro Language Definition
 *.neuro linguist-language=Neuro
 *.neuro linguist-detectable=true
-*.neuro -linguist-documentation
 
-# Mark ALL Neuro files as code (not documentation)
+# Mark examples as code
 examples/*.neuro linguist-detectable=true
-src/neuro/*.neuro linguist-detectable=true
+specifications/*.neuro linguist-detectable=true
 
 # Reduce Python visibility
 *.py linguist-detectable=false
 src/neuro/*.py linguist-detectable=true
-
-# Explicit documentation marking
-*.md linguist-documentation=true
-README.md linguist-documentation=true
-ROADMAP.md linguist-documentation=true
-CONTRIBUTING.md linguist-documentation=true
-
-# Override any automatic detection
-* linguist-detectable
-
