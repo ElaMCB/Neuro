@@ -7,8 +7,8 @@ import os
 import re
 import smtplib
 import getpass
-from email.mime.text import MimeText
-from email.mime.multipart import MimeMultipart
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 from typing import List
 
@@ -76,7 +76,7 @@ class NeuroExecutor:
             all_files = files + existing_resumes
             
             # Create message
-            message = MimeMultipart()
+            message = MIMEMultipart()
             message["From"] = sender_email
             message["To"] = receiver_email
             message["Subject"] = f"Neuro Verification: {position} Application for {company}"
@@ -113,13 +113,13 @@ Best regards,
 Your Neuro System
             """
             
-            message.attach(MimeText(body, "plain"))
+            message.attach(MIMEText(body, "plain"))
             
             # Attach all files
             for file_path in all_files:
                 if os.path.exists(file_path):
                     with open(file_path, "r", encoding='utf-8') as f:
-                        attachment = MimeText(f.read())
+                        attachment = MIMEText(f.read())
                         attachment.add_header(
                             "Content-Disposition",
                             f"attachment; filename={os.path.basename(file_path)}",
