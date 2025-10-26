@@ -41,36 +41,37 @@ class NeuroExecutor:
         """Generate actual cover letter file"""
         
         cover_letter = f"""
-Subject: {position} Application - Neuro Programming Language Creator
+Subject: {position} Application - AI Engineer
 
 Dear {company} Hiring Team,
 
-I'm writing to apply for the {position} position. My work on Neuro, an intent-driven programming language for AI development, directly addresses your focus on building tools that transform how researchers engage with scientific papers.
+I'm writing to apply for the {position} position. My experience with AI system development and recent work on Neuro, an intent-driven programming language exploration, aligns with your focus on building tools that transform how researchers engage with scientific papers.
 
-While you're creating innovative research tools, I've been building Neuro to revolutionize how developers create AI systems. Neuro's natural language understanding and automated workflow generation demonstrate the kind of AI engineering expertise needed for your {position} role.
+While you're creating innovative research tools, I've been exploring new paradigms in AI development through projects like Neuro, which investigates natural language understanding and automated workflow generation. This work demonstrates the kind of AI engineering thinking relevant to your {position} role.
 
-My background in system validation and reliability engineering ensures I understand how to build production-ready tools that researchers can depend on. Through Neuro's development, I've gained hands-on experience with:
+My background in system validation and reliability engineering ensures I understand how to build production-ready tools that researchers can depend on. Through my technical explorations, I've gained hands-on experience with:
 
 - Natural language processing and understanding systems
 - AI workflow automation and optimization
 - Scalable system architecture and deployment
 - Developer tooling and user experience
 
-The attached resume provides more detail about my experience, and I've included a description of the Neuro project to demonstrate my practical AI engineering capabilities.
+The attached resume provides more detail about my experience, and I've included a description of my Neuro project exploration to demonstrate my practical AI engineering approach.
 
-I would welcome the opportunity to discuss how my experience with intent-driven AI systems could contribute to {company}'s innovative work in research tooling.
+I would welcome the opportunity to discuss how my experience with AI systems could contribute to {company}'s innovative work in research tooling.
 
 Best regards,
-[Your Name]
-Creator of Neuro Programming Language
+Elena Mereanu
+elena.mereanu@gmail.com
+Neuro: https://github.com/ElaMCB/Neuro
 """
-        
-        filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
-        with open(filename, 'w') as f:
-            f.write(cover_letter)
-        
-        print(f"✅ Cover letter generated: {filename}")
-        return cover_letter
+    
+    filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
+    with open(filename, 'w') as f:
+        f.write(cover_letter)
+    
+    print(f"✅ Cover letter generated: {filename}")
+    return cover_letter
     
     def generate_resume_guide(self, analysis: str):
         """Generate resume optimization guide"""
