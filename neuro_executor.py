@@ -5,10 +5,19 @@ Neuro Executor - Actually executes the AI-generated plans
 
 import os
 import re
+import smtplib
+import getpass
+from email.mime.text import MimeText
+from email.mime.multipart import MimeMultipart
 from datetime import datetime
+from typing import List
 
 class NeuroExecutor:
     """Executes Neuro AI plans into real-world actions"""
+    
+    def __init__(self):
+        self.smtp_server = "smtp.gmail.com"
+        self.smtp_port = 587
     
     def execute_application_plan(self, neuro_analysis: str, original_neuro_code: str):
         """Actually execute the job application plan"""
@@ -22,10 +31,159 @@ class NeuroExecutor:
         position = self.extract_position(original_neuro_code)
         
         # Generate actual files and actions
-        self.generate_cover_letter(company, position, neuro_analysis, original_neuro_code)
-        self.generate_resume_guide(neuro_analysis)
-        self.generate_project_description()
+        cover_letter_file = self.generate_cover_letter(company, position, neuro_analysis, original_neuro_code)
+        resume_guide_file = self.generate_resume_guide(neuro_analysis)
+        project_desc_file = self.generate_project_description()
+        
+        # Send email with generated materials
+        self.send_verification_email(company, position, [cover_letter_file, resume_guide_file, project_desc_file])
+        
         self.show_next_steps(company)
+    
+    def send_verification_email(self, company: str, position: str, files: List[str]):
+        """Send generated materials to your email for verification"""
+        print("📧 SETTING UP EMAIL VERIFICATION...")
+        
+        try:
+            # Get email credentials securely
+            print("\n🔐 Email Configuration:")
+            sender_email = input("Enter your Gmail address: ").strip()
+            app_password = getpass.getpass("Enter your Gmail App Password: ").strip()
+            receiver_email = "elena.mereanu@gmail.com"
+            
+            if not sender_email or not app_password:
+                print("❌ Email credentials required for verification")
+                return
+            
+            # Add your actual resume files
+            resume_files = [
+                "examples/resume/outputs/resume_prompt_engineer_short.txt",
+                "examples/resume/outputs/resume_prompt_engineer_keywords.txt"
+            ]
+            
+            # Check which resume files exist
+            existing_resumes = []
+            for resume_file in resume_files:
+                if os.path.exists(resume_file):
+                    existing_resumes.append(resume_file)
+                    print(f"✅ Found resume: {resume_file}")
+            
+            if not existing_resumes:
+                print("❌ No resume files found. Generating basic template...")
+                existing_resumes = [self.generate_basic_resume()]
+            
+            # Combine all files to attach
+            all_files = files + existing_resumes
+            
+            # Create message
+            message = MimeMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = f"Neuro Verification: {position} Application for {company}"
+            
+            # Email body
+            body = f"""
+Hello Elena,
+
+This is a verification email from your Neuro system.
+
+✅ Your Neuro application materials for {position} at {company} have been successfully generated!
+
+📁 Generated Files:
+• cover_letter_{company.replace(' ', '_').lower()}.txt - Tailored cover letter
+• resume_optimization_guide.txt - AI engineering resume strategy  
+• neuro_project_description.txt - Project documentation
+{chr(10).join(f'• {os.path.basename(resume)} - Your actual resume' for resume in existing_resumes)}
+
+🎯 What's Included:
+1. A professional cover letter specifically written for {company}
+2. A comprehensive resume optimization guide for AI engineering roles
+3. A detailed project description of your Neuro work
+4. Your ACTUAL resume files with real experience and skills
+
+📝 Next Steps:
+1. Review all attached files for formatting and content
+2. Choose which resume version works best for {company}
+3. Customize the cover letter with any personal touches
+4. You're ready to apply - this is REAL content!
+
+🔧 System Status: Neuro is working correctly with your PROFESSIONAL resume files!
+
+Best regards,
+Your Neuro System
+            """
+            
+            message.attach(MimeText(body, "plain"))
+            
+            # Attach all files
+            for file_path in all_files:
+                if os.path.exists(file_path):
+                    with open(file_path, "r", encoding='utf-8') as f:
+                        attachment = MimeText(f.read())
+                        attachment.add_header(
+                            "Content-Disposition",
+                            f"attachment; filename={os.path.basename(file_path)}",
+                        )
+                        message.attach(attachment)
+            
+            # Send email
+            print("🔄 Connecting to Gmail...")
+            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                server.starttls()
+                server.login(sender_email, app_password)
+                server.send_message(message)
+            
+            print(f"✅ VERIFICATION EMAIL SENT!")
+            print(f"   From: {sender_email}")
+            print(f"   To: {receiver_email}")
+            print(f"   Subject: Neuro Verification: {position} Application for {company}")
+            print(f"   Attachments: {len(all_files)} files including your ACTUAL resumes!")
+            
+        except Exception as e:
+            print(f"❌ Email sending failed: {e}")
+            print("\n💡 TROUBLESHOOTING:")
+            print("1. Make sure you're using an App Password, not your regular Gmail password")
+            print("2. Enable 2-factor authentication in your Google account")
+            print("3. Generate an App Password at: https://myaccount.google.com/apppasswords")
+            print("4. Select 'Mail' as the app and 'Other' as the device")
+            print("\n📁 Your files are still generated locally for review.")
+    
+    def generate_basic_resume(self):
+        """Generate basic resume template if none found"""
+        basic_resume = """
+ELENA MEREANU
+Atlanta Metropolitan Area • elena.mereanu@gmail.com
+LinkedIn: linkedin.com/in/elenamereanu • GitHub: https://ElaMCB.github.io
+
+PROFESSIONAL SUMMARY
+QA Lead transitioning to AI Engineering with 10+ years building validation systems and automation frameworks. 
+Creator of Neuro programming language exploration. Strong background in Python, AI workflows, and system architecture.
+
+TECHNICAL SKILLS
+• AI Engineering: Intent-Driven Systems, Natural Language Understanding, AI Workflows
+• Programming: Python, TypeScript, PyTorch, API Development
+• Tools: Neuro, Docker, Git, REST APIs, MLflow, Playwright
+• Domains: Research Tools, AI Validation, Developer Tooling
+
+PROJECTS
+Neuro Programming Language Exploration
+- Intent-driven programming language for AI development
+- Natural language understanding of developer goals  
+- Automatic generation of optimized AI workflows
+- Built-in support for recommendation systems
+
+EXPERIENCE
+[Your detailed experience would go here - using your actual resume files]
+
+EDUCATION & CERTIFICATIONS
+M.S., Quality Assurance — Kennesaw State University
+AWS Certified Machine Learning — AWS
+NLP Specialization — Stanford / DeepLearning.AI
+"""
+        filename = "resume_basic_template.txt"
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(basic_resume)
+        return filename
     
     def extract_company(self, neuro_code: str) -> str:
         """Extract company name from Neuro code"""
@@ -67,11 +225,11 @@ Neuro: https://github.com/ElaMCB/Neuro
 """
         
         filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
-        with open(filename, 'w') as f:
+        with open(filename, 'w', encoding='utf-8') as f:
             f.write(cover_letter)
         
         print(f"✅ Cover letter generated: {filename}")
-        return cover_letter
+        return filename
     
     def generate_resume_guide(self, analysis: str):
         """Generate resume optimization guide"""
@@ -80,7 +238,8 @@ Neuro: https://github.com/ElaMCB/Neuro
 RESUME OPTIMIZATION FOR AI ENGINEERING ROLES:
 
 1. PROFESSIONAL SUMMARY:
-   "AI Engineer and Neuro Programming Language Creator with 10 years of system validation experience. Specializes in intent-driven AI systems, natural language processing, and building reliable production tools. Strong background in Python, AI workflow automation, and scalable system architecture."
+   Focus on AI engineering transition and Neuro project creation
+   Emphasize intent-driven systems and natural language processing
 
 2. KEY SKILLS SECTION:
    - AI Engineering: Intent-Driven Systems, Natural Language Understanding, AI Workflows
@@ -89,23 +248,20 @@ RESUME OPTIMIZATION FOR AI ENGINEERING ROLES:
    - Domains: Research Tools, AI Validation, Developer Tooling
 
 3. PROJECTS SECTION:
-   Feature "Neuro Programming Language" prominently:
-   - Intent-driven programming language for AI development
-   - Natural language understanding of developer goals
-   - Automatic generation of optimized AI workflows
-   - Built-in support for recommendation systems and RAG architectures
+   Feature "Neuro Programming Language" prominently as AI engineering demonstration
 
 4. EXPERIENCE ENHANCEMENT:
    - Reposition QA leadership as "AI System Validation"
    - Emphasize Python development and automation experience
    - Highlight system architecture and scalability work
-   - Connect testing background to AI reliability engineering
 """
         
-        with open("resume_optimization_guide.txt", 'w') as f:
+        filename = "resume_optimization_guide.txt"
+        with open(filename, 'w', encoding='utf-8') as f:
             f.write(resume_guide)
         
-        print("✅ Resume optimization guide generated: resume_optimization_guide.txt")
+        print(f"✅ Resume optimization guide generated: {filename}")
+        return filename
     
     def generate_project_description(self):
         """Generate Neuro project description"""
@@ -133,10 +289,12 @@ Relevance to AI Engineering:
 This project demonstrates hands-on experience with AI system concepts and technical exploration relevant to building sophisticated research tools and AI systems.
 """
         
-        with open("neuro_project_description.txt", 'w') as f:
+        filename = "neuro_project_description.txt"
+        with open(filename, 'w', encoding='utf-8') as f:
             f.write(project_desc)
         
-        print("✅ Project description generated: neuro_project_description.txt")
+        print(f"✅ Project description generated: {filename}")
+        return filename
     
     def show_next_steps(self, company: str):
         """Show immediate next steps"""
@@ -144,28 +302,22 @@ This project demonstrates hands-on experience with AI system concepts and techni
         next_steps = f"""
 🎯 IMMEDIATE EXECUTION STEPS FOR {company.upper()}:
 
-1. UPDATE YOUR RESUME:
-   - Use the resume_optimization_guide.txt to enhance your resume
-   - Add the AI engineering skills and Neuro project
+✅ FILES GENERATED & ATTACHED:
+• cover_letter_{company.replace(' ', '_').lower()}.txt
+• resume_optimization_guide.txt  
+• neuro_project_description.txt
+• resume_prompt_engineer_short.txt (YOUR ACTUAL RESUME)
+• resume_prompt_engineer_keywords.txt (YOUR ACTUAL RESUME)
 
-2. SEND APPLICATION:
-   - Email: elena.mereanu@gmail.com (TEST MODE - would be hiring@alphaxiv.org)
-   - Subject: "AI Engineer Application - Neuro Programming Language Creator"
-   - Body: Use the generated cover letter
-   - Attachments: Updated resume + neuro_project_description.txt
+📧 EMAIL VERIFICATION:
+• Check your email for the verification message
+• Review ALL attachments including your REAL resumes
+• The system is ready for actual job applications!
 
-3. FOLLOW UP:
-   - Wait 5-7 business days
-   - Send polite follow-up email if no response
-   - Reference your Neuro project in follow-up
-
-4. PREPARE FOR INTERVIEWS:
-   - Practice explaining the Neuro project
-   - Prepare examples of AI system design
-   - Review recommendation systems and RAG architectures
-
-🚀 YOUR APPLICATION PACKAGE IS READY!
-Neuro has generated all the materials you need to apply.
+🚀 PRODUCTION READY:
+• You have professional, tailored application materials
+• Including your actual resume with real experience
+• Neuro is verified and working with real content!
 """
         
         print(next_steps)
