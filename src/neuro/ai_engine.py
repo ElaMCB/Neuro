@@ -94,25 +94,24 @@ class NeuroAIEngine:
             print(f"API failed: {e}")
             return self.rule_based_understanding(neuro_code)
     
+   
     def create_understanding_prompt(self, neuro_code: str) -> str:
-        """Create prompt for AI understanding"""
-        return f"""
-        You are Neuro AI, an intent-driven programming language system. 
-        Analyze this Neuro code and provide structured understanding:
-        
-        NEURO CODE:
-        {neuro_code}
-        
-        Please analyze:
-        1. PRIMARY GOAL: What is the main objective?
-        2. KEY COMPONENTS: What elements are involved?
-        3. EXECUTION STRATEGY: How should this be implemented?
-        4. REQUIRED ACTIONS: What specific steps are needed?
-        5. EXPECTED OUTCOME: What result should be achieved?
-        
-        Respond in structured JSON format if possible.
-        """
-    
+    """Create better prompt for AI understanding"""
+    return f"""
+Analyze this Neuro programming intent and provide ONLY the analysis:
+
+NEURO CODE:
+{neuro_code}
+
+ANALYSIS REQUEST:
+- Primary goal and objective
+- Key components and elements  
+- Execution strategy
+- Required specific actions
+- Expected outcomes
+
+Provide concise, structured analysis without repeating the prompt.
+"""
     def parse_ai_response(self, response: str) -> Dict[str, Any]:
         """Parse AI response into structured data"""
         try:
