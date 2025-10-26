@@ -9,23 +9,37 @@ import json
 import re
 from typing import Dict, List, Any
 
+# FIX: Add current directory to Python path first
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, current_dir)
+sys.path.insert(0, os.path.join(current_dir, 'src'))
+
 # Import our AI engine
 try:
-    from src.neuro.ai_engine import NeuroAIEngine
-except ImportError:
-    # Fallback if not installed as package
-    sys.path.append('./src')
     from neuro.ai_engine import NeuroAIEngine
+    print("✅ Using local Neuro AI engine")
+except ImportError as e:
+    print(f"❌ Error importing Neuro AI engine: {e}")
+    sys.exit(1)
+
+# Import Neuro executor for real-world actions
+try:
+    from neuro_executor import NeuroExecutor
+    NEURO_EXECUTOR_AVAILABLE = True
+    print("✅ Neuro Executor loaded - REAL execution enabled")
+except ImportError as e:
+    NEURO_EXECUTOR_AVAILABLE = False
+    print(f"⚠️  Neuro executor not available: {e}")
 
 class NeuroRuntime:
-    """Neuro execution runtime with AI understanding"""
+    """Neuro execution runtime with AI understanding and REAL execution"""
     
     def __init__(self):
         self.ai = NeuroAIEngine()
         self.execution_history = []
     
     def execute_file(self, filename: str) -> str:
-        """Execute a .neuro file with AI understanding"""
+        """Execute a .neuro file with AI understanding and REAL execution"""
         if not os.path.exists(filename):
             return f"Error: {filename} not found"
         
@@ -37,176 +51,146 @@ class NeuroRuntime:
         # Use AI to understand intent
         understanding = self.ai.understand_neuro_intent(neuro_code)
         
+        # Execute real actions based on intent
+        execution_result = self.execute_real_actions(neuro_code, understanding)
+        
         # Store execution history
         self.execution_history.append({
             'file': filename,
+            'code': neuro_code,
             'understanding': understanding,
-            'timestamp': self.get_timestamp()
+            'execution_result': execution_result
         })
         
-        # Generate execution plan
-        return self.generate_execution_plan(understanding, neuro_code)
-    
-    def execute_code(self, neuro_code: str) -> str:
-        """Execute Neuro code directly"""
-        print("🔍 Analyzing Neuro code with AI...")
-        understanding = self.ai.understand_neuro_intent(neuro_code)
-        
-        return self.generate_execution_plan(understanding, neuro_code)
-    
-    def generate_execution_plan(self, understanding: Dict[str, Any], original_code: str) -> str:
-        """Generate human-executable plan from AI understanding"""
-        
-        plan = f"""
-🧠 NEURO AI EXECUTION PLAN
-{'='*60}
+        return execution_result
 
-🎯 PRIMARY GOAL:
-{understanding.get('goal', 'Goal not specified')}
-
-🤖 AI ANALYSIS:
-{understanding.get('analysis', 'No detailed analysis available')}
-
-📋 EXECUTION STRATEGY:
-{understanding.get('strategy', 'No specific strategy provided')}
-
-🚀 REQUIRED ACTIONS:
-"""
+    def execute_real_actions(self, neuro_code: str, ai_understanding: str) -> str:
+        """Execute real-world actions based on Neuro code intent"""
+        if not NEURO_EXECUTOR_AVAILABLE:
+            return self.format_analysis_only(ai_understanding, neuro_code)
         
-        actions = understanding.get('actions', [])
-        if actions:
-            for i, action in enumerate(actions, 1):
-                plan += f"  {i}. {action}\n"
-        else:
-            plan += "  No specific actions identified\n"
+        executor = NeuroExecutor()
+        neuro_upper = neuro_code.upper()
         
-        # Add context from original code
-        plan += f"""
-{'='*60}
+        # Detect job application intent
+        if any(keyword in neuro_upper for keyword in ['COMPANY:', 'POSITION:', 'APPLY', 'JOB', 'HIRING']):
+            print("🎯 DETECTED JOB APPLICATION INTENT")
+            print("🚀 EXECUTING REAL APPLICATION PLAN...")
+            print("=" * 60)
+            
+            # This actually generates real files!
+            executor.execute_application_plan(ai_understanding, neuro_code)
+            
+            print("=" * 60)
+            return self.format_execution_complete(ai_understanding)
+        
+        # For other intents, return AI analysis only for now
+        return self.format_analysis_only(ai_understanding, neuro_code)
+
+    def format_analysis_only(self, understanding: str, neuro_code: str) -> str:
+        """Format output when only AI analysis is available"""
+        return f"""
+🧠 NEURO AI ANALYSIS COMPLETE
+============================================================
+
 📝 ORIGINAL NEURO CODE:
-{original_code}
+{neuro_code}
 
-💡 NEURO AI INSIGHTS:
-• This analysis was generated using free AI models
-• The more you use Neuro, the better it understands your patterns
-• Consider saving this execution plan for future reference
+💡 AI UNDERSTANDING:
+{understanding}
 
 🎯 NEXT STEPS:
-1. Review the AI-generated plan above
-2. Execute the listed actions in sequence  
-3. Document your results and learnings
-4. Refine your Neuro code based on outcomes
+1. Review the AI-generated understanding above
+2. Consider adding specific intent markers like:
+   - COMPANY: [Company Name]
+   - POSITION: [Job Title]
+   - GOAL: [Your objective]
 
-📊 EXECUTION STATUS: Ready to begin
+📊 EXECUTION STATUS: Analysis Complete - Add specific intent for real execution
 """
+
+    def format_execution_complete(self, understanding: str) -> str:
+        """Format output when real execution completed"""
+        return f"""
+🧠 NEURO EXECUTION COMPLETE!
+============================================================
+
+💡 AI UNDERSTANDING:
+{understanding}
+
+✅ REAL FILES GENERATED:
+• cover_letter_[company].txt - Professional cover letter
+• resume_optimization_guide.txt - AI engineering resume strategy  
+• neuro_project_description.txt - Project documentation
+
+🎯 YOUR APPLICATION PACKAGE IS READY!
+Next steps are outlined in the generated files.
+
+📊 EXECUTION STATUS: Real-world actions completed successfully!
+"""
+
+    def interactive_mode(self):
+        """Interactive Neuro session"""
+        print("🧠 Neuro AI Runtime - Interactive Mode")
+        print("Type 'quit' to exit, 'history' to see previous executions")
+        print("==================================================")
         
-        return plan
-    
-    def get_timestamp(self):
-        """Get current timestamp"""
-        from datetime import datetime
-        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
+        while True:
+            try:
+                user_input = input("neuro> ").strip()
+                
+                if user_input.lower() in ['quit', 'exit']:
+                    break
+                elif user_input == 'history':
+                    self.show_history()
+                elif user_input.endswith('.neuro'):
+                    result = self.execute_file(user_input)
+                    print(result)
+                else:
+                    # Direct analysis
+                    understanding = self.ai.understand_neuro_intent(user_input)
+                    print(f"🧠 AI Understanding: {understanding}")
+                    
+            except KeyboardInterrupt:
+                print("\n👋 Goodbye!")
+                break
+            except Exception as e:
+                print(f"❌ Error: {str(e)}")
+
     def show_history(self):
         """Show execution history"""
         if not self.execution_history:
-            return "No executions recorded yet."
+            print("No execution history yet.")
+            return
         
-        history = "📊 NEURO EXECUTION HISTORY\n" + "="*40 + "\n"
-        for i, execution in enumerate(self.execution_history, 1):
-            history += f"\n{i}. {execution['file']} at {execution['timestamp']}\n"
-            history += f"   Goal: {execution['understanding'].get('goal', 'N/A')}\n"
-        
-        return history
-
-def interactive_mode():
-    """Run Neuro in interactive mode"""
-    runtime = NeuroRuntime()
-    
-    print("🧠 Neuro AI Runtime - Interactive Mode")
-    print("Type 'quit' to exit, 'history' to see previous executions")
-    print("=" * 50)
-    
-    while True:
-        user_input = input("\nneuro> ").strip()
-        
-        if user_input.lower() in ['quit', 'exit', 'q']:
-            print("👋 Thank you for using Neuro AI!")
-            break
-        elif user_input.lower() == 'history':
-            print(runtime.show_history())
-        elif user_input.lower() == 'help':
-            print_help()
-        elif user_input.endswith('.neuro'):
-            # Execute Neuro file
-            if os.path.exists(user_input):
-                result = runtime.execute_file(user_input)
-                print(result)
-            else:
-                print(f"❌ File not found: {user_input}")
-        elif user_input:
-            # Execute direct Neuro code
-            result = runtime.execute_code(user_input)
-            print(result)
-        else:
-            continue
-
-def print_help():
-    """Print help information"""
-    help_text = """
-NEURO AI RUNTIME - COMMANDS:
-
-• <filename>.neuro    - Execute a Neuro file
-• <neuro code>        - Execute Neuro code directly
-• history            - Show execution history  
-• help               - Show this help message
-• quit               - Exit Neuro
-
-EXAMPLES:
-  apply_alphaxiv.neuro    - Execute a specific file
-  "find ai engineer jobs" - Execute direct Neuro code
-
-NEURO FILE FORMAT:
-  Create .neuro files with your intent in natural language.
-  Neuro AI will understand and generate execution plans.
-"""
-    print(help_text)
+        print("\n📚 Execution History:")
+        for i, item in enumerate(self.execution_history[-5:], 1):
+            print(f"{i}. {item['file']} - {len(item['code'])} chars")
 
 def main():
-    """Main Neuro runtime entry point"""
+    """Main entry point"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Neuro AI Runtime')
+    parser.add_argument('filename', nargs='?', help='Neuro file to execute')
+    parser.add_argument('--interactive', action='store_true', help='Start interactive mode')
+    
+    args = parser.parse_args()
+    
     runtime = NeuroRuntime()
     
     print("🧠 Neuro AI Runtime v1.0")
     print("Free AI-Powered Intent Execution")
-    print("=" * 50)
+    print("==================================================")
     
-    # Check command line arguments
-    if len(sys.argv) == 1:
-        # No arguments - start interactive mode
-        interactive_mode()
-        return
-    
-    # Handle command line execution
-    neuro_file = sys.argv[1]
-    
-    if neuro_file == "interactive":
-        interactive_mode()
-    elif neuro_file == "history":
-        print(runtime.show_history())
-    elif neuro_file == "help":
-        print_help()
+    if args.interactive:
+        runtime.interactive_mode()
+    elif args.filename:
+        result = runtime.execute_file(args.filename)
+        print(result)
     else:
-        # Execute specific file
-        if os.path.exists(neuro_file):
-            result = runtime.execute_file(neuro_file)
-            print(result)
-        else:
-            print(f"❌ File not found: {neuro_file}")
-            print(f"📁 Current directory: {os.getcwd()}")
-            print(f"📋 Available .neuro files:")
-            for file in os.listdir('.'):
-                if file.endswith('.neuro'):
-                    print(f"  - {file}")
+        print("Usage: python neuro_ai_runtime.py <file.neuro>")
+        print("       python neuro_ai_runtime.py --interactive")
 
 if __name__ == "__main__":
     main()
