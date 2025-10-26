@@ -196,40 +196,86 @@ NLP Specialization — Stanford / DeepLearning.AI
         return match.group(1).strip() if match else "Target Position"
     
     def generate_cover_letter(self, company: str, position: str, analysis: str, neuro_code: str):
-        """Generate actual cover letter file"""
-        
-        cover_letter = f"""
-Subject: {position} Application - AI Engineering Background
+    """Generate actual cover letter file with Arial font and proper Neuro link"""
+    
+    cover_letter = f"""
+<style>
+body {{
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}}
+.section {{
+    margin-bottom: 16px;
+}}
+.signature {{
+    margin-top: 20px;
+    line-height: 1.6;
+}}
+.neuro-link {{
+    color: #0969da;
+    text-decoration: none;
+}}
+.neuro-link:hover {{
+    text-decoration: underline;
+}}
+</style>
 
+<div class="section">
+<strong>Subject: AI Engineer Application - Neuro Project Experience</strong>
+</div>
+
+<div class="section">
 Dear {company} Hiring Team,
+</div>
 
-I'm writing to apply for the {position} position. My experience with AI system development and recent work on Neuro, an intent-driven programming language exploration, aligns with your focus on building tools that transform how researchers engage with scientific papers.
+<div class="section">
+I'm writing to apply for the AI Engineer position. My experience with AI system development and recent work on <a href="https://github.com/ElaMCB/Neuro" class="neuro-link">Neuro</a>, an intent-driven programming language exploration, aligns with your focus on building tools that transform how researchers engage with scientific papers.
+</div>
 
-While you're creating innovative research tools, I've been exploring new paradigms in AI development through projects like Neuro, which investigates natural language understanding and automated workflow generation. This work demonstrates the kind of AI engineering thinking relevant to your {position} role.
+<div class="section">
+While you're creating innovative research tools, I've been exploring new paradigms in AI development through projects like <a href="https://github.com/ElaMCB/Neuro" class="neuro-link">Neuro</a>, which investigates natural language understanding and automated workflow generation. This work demonstrates the kind of AI engineering thinking relevant to your AI Engineer role.
+</div>
 
+<div class="section">
 My background in system validation and reliability engineering ensures I understand how to build production-ready tools that researchers can depend on. Through my technical explorations, I've gained hands-on experience with:
+</div>
 
-- Natural language processing and understanding systems
-- AI workflow automation and optimization
-- Scalable system architecture and deployment
-- Developer tooling and user experience
+<div class="section">
+• <strong>Natural language processing and understanding systems</strong><br>
+• <strong>AI workflow automation and optimization</strong><br>
+• <strong>Scalable system architecture and deployment</strong><br>
+• <strong>Developer tooling and user experience</strong>
+</div>
 
-The attached resume provides more detail about my experience, and I've included a description of my Neuro project exploration to demonstrate my practical AI engineering approach.
+<div class="section">
+The attached resume provides more detail about my experience, and I've included a description of my <a href="https://github.com/ElaMCB/Neuro" class="neuro-link">Neuro</a> project exploration to demonstrate my practical AI engineering approach.
+</div>
 
+<div class="section">
 I would welcome the opportunity to discuss how my experience with AI systems could contribute to {company}'s innovative work in research tooling.
+</div>
 
-Best regards,
-Elena Mereanu
-elena.mereanu@gmail.com
-Neuro: https://github.com/ElaMCB/Neuro
+<div class="signature">
+<strong>Best regards,</strong><br>
+Elena Mereanu<br>
+elena.mereanu@gmail.com<br>
+<a href="https://github.com/ElaMCB/Neuro" class="neuro-link">Neuro</a> | LinkedIn: linkedin.com/in/elenamereanu
+</div>
 """
-        
-        filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(cover_letter)
-        
-        print(f"✅ Cover letter generated: {filename}")
-        return filename
+    
+    filename = f"cover_letter_{company.replace(' ', '_').lower()}.html"
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(cover_letter)
+    
+    print(f"✅ Cover letter generated: {filename}")
+    print("   - AI Engineer position focus")
+    print("   - Arial font for readability") 
+    print("   - 'Neuro' as clickable GitHub link")
+    return filename
     
     def generate_resume_guide(self, analysis: str):
         """Generate resume optimization guide"""
