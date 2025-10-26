@@ -25,14 +25,7 @@ Stop writing code. Start declaring intent.
 
 # How It Works
 
-// Describe your goal
-
-pipeline JobApplicationTracker {
-    goal: "Track job applications and optimize outreach"
-    data: [linkedin_profiles, job_descriptions, application_status]
-    analyze: [response_rates, skill_gaps, company_fit]
-    output: daily_summary_email
-}
+Natural language → AI understanding → Direct execution
 
 # Get Started
 Create a .neuro file
