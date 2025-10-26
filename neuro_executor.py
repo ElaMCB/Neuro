@@ -41,7 +41,7 @@ class NeuroExecutor:
         """Generate actual cover letter file"""
         
         cover_letter = f"""
-Subject: {position} Application - AI Engineer
+Subject: {position} Application - AI Engineering Background
 
 Dear {company} Hiring Team,
 
@@ -65,13 +65,13 @@ Elena Mereanu
 elena.mereanu@gmail.com
 Neuro: https://github.com/ElaMCB/Neuro
 """
-    
-    filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
-    with open(filename, 'w') as f:
-        f.write(cover_letter)
-    
-    print(f"✅ Cover letter generated: {filename}")
-    return cover_letter
+        
+        filename = f"cover_letter_{company.replace(' ', '_').lower()}.txt"
+        with open(filename, 'w') as f:
+            f.write(cover_letter)
+        
+        print(f"✅ Cover letter generated: {filename}")
+        return cover_letter
     
     def generate_resume_guide(self, analysis: str):
         """Generate resume optimization guide"""
@@ -132,11 +132,11 @@ Skills Demonstrated:
 Relevance to AI Engineering:
 This project demonstrates hands-on experience with AI system concepts and technical exploration relevant to building sophisticated research tools and AI systems.
 """
-    
-    with open("neuro_project_description.txt", 'w') as f:
-        f.write(project_desc)
-    
-    print("✅ Project description generated: neuro_project_description.txt")
+        
+        with open("neuro_project_description.txt", 'w') as f:
+            f.write(project_desc)
+        
+        print("✅ Project description generated: neuro_project_description.txt")
     
     def show_next_steps(self, company: str):
         """Show immediate next steps"""
@@ -149,7 +149,7 @@ This project demonstrates hands-on experience with AI system concepts and techni
    - Add the AI engineering skills and Neuro project
 
 2. SEND APPLICATION:
-   - Email: hiring@alphaxiv.org
+   - Email: elena.mereanu@gmail.com (TEST MODE - would be hiring@alphaxiv.org)
    - Subject: "AI Engineer Application - Neuro Programming Language Creator"
    - Body: Use the generated cover letter
    - Attachments: Updated resume + neuro_project_description.txt
