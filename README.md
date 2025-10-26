@@ -61,12 +61,14 @@ Tracks applications
 All in one step, no code required.
 
 ## It's Zero-Friction AI:
-Traditional Approach	Neuro Approach
-Learn programming	Just speak English
-Write code	Describe goals
-Debug errors	Get clarification
-Manage dependencies	Everything just works
-Compile and run	Instant results
+
+#Traditional Approach	   #Neuro Approach
+
+Learn programming	      Just speak English
+Write code	              Describe goals
+Debug errors	          Get clarification
+Manage dependencies	      Everything just works
+Compile and run	          Instant results
 
 ## Quick Example
 
