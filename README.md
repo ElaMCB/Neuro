@@ -71,6 +71,19 @@ All in one step, no code required.
 | Manage dependencies | Everything just works |
 | Compile and run | Instant results |
 
+## The Neuro Revolution
+
+| Aspect | Traditional Development | Neuro Development |
+|--------|------------------------|-------------------|
+| **Learning Curve** | Months of programming languages | Minutes of natural language |
+| **Development** | Writing detailed implementation code | Describing goals and constraints |
+| **Debugging** | Finding and fixing code errors | Getting clarification on intent |
+| **Setup** | Complex environments and dependencies | Zero configuration required |
+| **Execution** | Compile, build, deploy cycles | Instant understanding and execution |
+| **Optimization** | Manual code improvements | Automatic learning and adaptation |
+| **Tools** | IDEs, terminals, build systems | Any simple text editor |
+| **AI Integration** | External APIs and complex prompts | Built-in intelligent understanding |
+
 ## Quick Example
 
 ```neuro
