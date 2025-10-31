@@ -1,0 +1,11 @@
+# Neuro Language Definition
+*.neuro linguist-language=Neuro
+*.neuro linguist-detectable=true
+
+# Mark examples as code
+examples/*.neuro linguist-detectable=true
+specifications/*.neuro linguist-detectable=true
+
+# Reduce Python visibility
+*.py linguist-detectable=false
+src/neuro/*.py linguist-detectable=true

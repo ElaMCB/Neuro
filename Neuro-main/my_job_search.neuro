@@ -1,0 +1,27 @@
+// My AI Job Search Assistant
+pipeline FindAIPositions {
+    goal: "Find prompt engineer and AI engineer jobs with remote-first companies in US"
+    
+    // Your specific requirements
+    target_roles: ["prompt engineer", "ai engineer", "ml engineer"]
+    locations: ["remote", "US", "Boston", "New York"]
+    company_policy: "remote first"
+    skills: ["python", "pytorch", "llm", "gpt", "transformers"]
+    experience: "junior level"
+    
+    // What you want Neuro to do
+    actions: [
+        search_job_boards(),
+        filter_remote_first(),
+        match_skills(),
+        generate_applications(),
+        track_responses()
+    ]
+    
+    // Success metrics
+    targets: {
+        applications_per_week: 10,
+        companies_researched: 50,
+        interviews_target: 5
+    }
+}
