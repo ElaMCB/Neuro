@@ -29,10 +29,11 @@ jobs:
       run: |
         # Create a template profile config if it doesn't exist
         # User should replace with actual config or use secrets
+        EMAIL="${USER_EMAIL:-elena.mereanu@gmail.com}"
         cat > profile_config.json << EOF
         {
           "name": "Elena Mereanu",
-          "email": "${{ secrets.USER_EMAIL }}",
+          "email": "$EMAIL",
           "target_roles": ["prompt engineer", "ai engineer", "ml engineer"],
           "skills": ["python", "pytorch", "llm", "gpt", "transformers"],
           "experience_level": "junior",
@@ -43,7 +44,7 @@ jobs:
         }
         EOF
       env:
-        USER_EMAIL: ${{ secrets.USER_EMAIL || 'elena.mereanu@gmail.com' }}
+        USER_EMAIL: ${{ secrets.USER_EMAIL }}
     
     - name: Run weekly job search
       run: |
