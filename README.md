@@ -33,11 +33,11 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## ✨ Vision
+##  Vision
 
 <div align="center">
 
-| 🎯 **Simple** | ⚡ **Fast** | 📝 **Accessible** | 🚀 **Powerful** |
+|  **Simple** |  **Fast** |  **Accessible** |  **Powerful** |
 |:---:|:---:|:---:|:---:|
 | No AI/ML expertise required | Minutes instead of weeks | Works with just a text editor | Builds production-ready systems |
 
@@ -51,7 +51,7 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## 🔄 How It Works
+##  How It Works
 
 <div align="center">
 
@@ -61,7 +61,7 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## 🚀 Get Started
+##  Get Started
 
 1. **Create a `.neuro` file**
 2. **Describe your AI task** in plain English + simple structure
@@ -87,7 +87,7 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## 🆚 Neuro vs Traditional Programming
+##  Neuro vs Traditional Programming
 
 | Traditional Approach | Neuro Approach |
 |:---------------------|:---------------|
@@ -99,7 +99,7 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## 🔄 The Neuro Revolution
+##  The Neuro Revolution
 
 | Aspect | Traditional Development | Neuro Development |
 |:-------|:------------------------|:-----------------|
@@ -114,7 +114,7 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
-## 💻 Quick Example
+##  Quick Example
 
 ```neuro
 // Instead of writing 200 lines of Python:
@@ -129,7 +129,7 @@ pipeline PredictiveMaintenance {
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 <div align="center">
 
