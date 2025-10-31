@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuro Job Search Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-card .label {
+            color: #6c757d;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        
+        .profile-section {
+            padding: 30px 40px;
+            background: #fff;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .profile-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .profile-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .profile-item strong {
+            display: block;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        
+        .jobs-section {
+            padding: 30px 40px;
+        }
+        
+        .jobs-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .job-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .job-card:hover {
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .job-card .match-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .job-card .match-badge.high {
+            background: #28a745;
+        }
+        
+        .job-card .match-badge.medium {
+            background: #ffc107;
+        }
+        
+        .job-card .match-badge.low {
+            background: #dc3545;
+        }
+        
+        .job-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 10px;
+            padding-right: 120px;
+        }
+        
+        .job-company {
+            font-size: 1.1em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+        
+        .job-description {
+            color: #495057;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background: #e7f3ff;
+            color: #004085;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid #b8daff;
+        }
+        
+        .job-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+        
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .platform-wellfound { background: #ffeaa7; color: #2d3436; }
+        .platform-indeed { background: #74b9ff; color: #2d3436; }
+        .platform-linkedin { background: #0077b5; color: white; }
+        .platform-startup_board { background: #fd79a8; color: white; }
+        .platform-remoteok { background: #a29bfe; color: white; }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .no-jobs {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .job-card .match-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+            
+            .job-title {
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Neuro Job Search Results</h1>
+            <p class="subtitle">AI-Powered Job Matching</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number" id="total-jobs">0</div>
+                <div class="label">Total Jobs</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="high-matches">0</div>
+                <div class="label">High Matches (>70%)</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="medium-matches">0</div>
+                <div class="label">Medium Matches (40-70%)</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="platforms">0</div>
+                <div class="label">Platforms Searched</div>
+            </div>
+        </div>
+        
+        <div class="profile-section">
+            <h2>👤 Your Profile</h2>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <strong>Target Roles:</strong>
+                    <div class="tags" id="target-roles"></div>
+                </div>
+                <div class="profile-item">
+                    <strong>Skills:</strong>
+                    <div class="tags" id="skills"></div>
+                </div>
+                <div class="profile-item">
+                    <strong>Locations:</strong>
+                    <div class="tags" id="locations"></div>
+                </div>
+                <div class="profile-item">
+                    <strong>Experience Level:</strong>
+                    <div id="experience"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="jobs-section">
+            <h2>💼 Job Listings</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterJobs('all')">All Jobs</button>
+                <button class="filter-btn" onclick="filterJobs('high')">High Match (>70%)</button>
+                <button class="filter-btn" onclick="filterJobs('medium')">Medium Match (40-70%)</button>
+                <button class="filter-btn" onclick="filterJobs('low')">Low Match (<40%)</button>
+            </div>
+            
+            <div id="jobs-list"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Generated by <strong>Neuro</strong> - The Intent-Driven Language for AI</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">🔗 <a href="https://github.com/ElaMCB/Neuro" style="color: #667eea;">GitHub</a></p>
+        </div>
+    </div>
+    
+    <script>
+        let allJobs = [];
+        
+        // Load data from JSON file or use embedded data
+        async function loadData() {
+            // You can paste your JSON data here or load from file
+            const data = JSON_DATA_PLACEHOLDER;
+            displayResults(data);
+        }
+        
+        function displayResults(data) {
+            allJobs = data.jobs || [];
+            
+            // Update stats
+            document.getElementById('total-jobs').textContent = data.summary.total_jobs || 0;
+            document.getElementById('high-matches').textContent = data.summary.high_matches || 0;
+            document.getElementById('medium-matches').textContent = data.summary.medium_matches || 0;
+            
+            const platforms = new Set(allJobs.map(j => j.platform));
+            document.getElementById('platforms').textContent = platforms.size;
+            
+            // Update profile
+            const profile = data.profile;
+            document.getElementById('target-roles').innerHTML = profile.target_roles.map(r => 
+                `<span class="tag">${r}</span>`
+            ).join('');
+            
+            document.getElementById('skills').innerHTML = profile.skills.map(s => 
+                `<span class="tag">${s}</span>`
+            ).join('');
+            
+            document.getElementById('locations').innerHTML = profile.locations.map(l => 
+                `<span class="tag">${l}</span>`
+            ).join('');
+            
+            document.getElementById('experience').textContent = profile.experience_level;
+            
+            // Display jobs
+            displayJobs(allJobs);
+        }
+        
+        function displayJobs(jobs) {
+            const jobsList = document.getElementById('jobs-list');
+            
+            if (jobs.length === 0) {
+                jobsList.innerHTML = '<div class="no-jobs"><h3>No jobs found matching this filter</h3></div>';
+                return;
+            }
+            
+            jobsList.innerHTML = jobs.map(job => {
+                const matchClass = job.match_score >= 70 ? 'high' : job.match_score >= 40 ? 'medium' : 'low';
+                
+                return `
+                    <div class="job-card" data-match="${matchClass}">
+                        <div class="match-badge ${matchClass}">${Math.round(job.match_score)}% Match</div>
+                        <h3 class="job-title">${job.title}</h3>
+                        <div class="job-company">${job.company}</div>
+                        
+                        <div class="job-meta">
+                            <span class="job-meta-item">📍 ${job.location}</span>
+                            <span class="platform-badge platform-${job.platform}">${job.platform}</span>
+                            ${job.posted_date ? `<span class="job-meta-item">🗓️ ${job.posted_date}</span>` : ''}
+                        </div>
+                        
+                        <p class="job-description">${job.description}</p>
+                        
+                        ${job.required_skills && job.required_skills.length > 0 ? `
+                            <div class="job-skills">
+                                ${job.required_skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="job-actions">
+                            <a href="${job.url}" target="_blank" class="btn btn-primary">View Job →</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function filterJobs(type) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            let filtered = allJobs;
+            if (type === 'high') {
+                filtered = allJobs.filter(j => j.match_score >= 70);
+            } else if (type === 'medium') {
+                filtered = allJobs.filter(j => j.match_score >= 40 && j.match_score < 70);
+            } else if (type === 'low') {
+                filtered = allJobs.filter(j => j.match_score < 40);
+            }
+            
+            displayJobs(filtered);
+        }
+        
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>
+

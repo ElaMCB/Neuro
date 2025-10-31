@@ -72,10 +72,17 @@ jobs:
         # Get most recent results file
         if [ -d job_search_results ]; then
           LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
-          if [ -n "$LATEST_RESULT" ] && [ -f display_results.py ]; then
-            python display_results.py "$LATEST_RESULT" || echo "⚠️  Could not generate report"
+          if [ -n "$LATEST_RESULT" ]; then
+            # Generate text report
+            if [ -f display_results.py ]; then
+              python display_results.py "$LATEST_RESULT" || echo "⚠️  Could not generate text report"
+            fi
+            # Generate HTML report
+            if [ -f generate_html_report.py ]; then
+              python generate_html_report.py "$LATEST_RESULT" job_search_report.html || echo "⚠️  Could not generate HTML report"
+            fi
           else
-            echo "⚠️  No results file or display_results.py found"
+            echo "⚠️  No results file found"
           fi
         else
           echo "⚠️  job_search_results directory not found"
@@ -99,6 +106,7 @@ jobs:
           job_search_results/**
           job_search_reports/**
           resume_templates/**
+          job_search_report.html
         if-no-files-found: ignore
         retention-days: 30
     
