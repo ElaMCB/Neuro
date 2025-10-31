@@ -1,5 +1,19 @@
-# Neuro
-A language for AI: Making AI development accessible through intent-driven programming
+```
+░▒▓█ N E U R O █▓▒░
+```
+
+<div align="center">
+
+```
+██████╗ ███████╗ ██╗   ██╗ ██████╗  ██████╗ 
+██╔══██╗██╔════╝ ██║   ██║██╔══██╗██╔═══██╗
+██║  ██║█████╗   ██║   ██║██████╔╝██║   ██║
+██║  ██║██╔══╝   ██║   ██║██╔══██╗██║   ██║
+██████╔╝███████╗ ╚██████╔╝██║  ██║╚██████╔╝
+╚═════╝ ╚══════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ 
+```
+
+</div>
 
 # Neuro: The Intent-Driven Language for AI
 
