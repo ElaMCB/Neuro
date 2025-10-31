@@ -33,6 +33,46 @@ Create a .neuro file
 Describe your AI task in plain English + simple structure
 
 Neuro handles implementation
+
+## 🧠 Job Search System (NEW!)
+
+Neuro now includes an advanced job search system - **declare your job search intent, Neuro finds the jobs!**
+
+### Example: Job Search in Neuro
+
+```neuro
+pipeline FindAIPositions {
+    goal: "Find prompt engineer and AI engineer jobs with remote-first companies"
+    
+    target_roles: ["prompt engineer", "ai engineer", "ml engineer"]
+    locations: ["remote", "US", "Boston", "New York"]
+    company_policy: "remote first"
+    skills: ["python", "pytorch", "llm", "gpt", "transformers"]
+    experience: "junior level"
+    
+    actions: [
+        search_job_boards(),
+        filter_remote_first(),
+        match_skills(),
+        generate_applications()
+    ]
+}
+```
+
+Run it:
+```bash
+python run_neuro.py my_job_search.neuro
+```
+
+**Features:**
+- ✅ Multi-platform search (Wellfound, RemoteOK, Indeed, LinkedIn, startup boards)
+- ✅ Automatic profile matching with scoring (0-100%)
+- ✅ Resume tailoring for specific jobs
+- ✅ Weekly automation
+- ✅ Intent-driven - no Python code needed!
+
+See [JOB_SEARCH_README.md](JOB_SEARCH_README.md) for full documentation.
+
 ## Documentation
 
 - [Project Roadmap](ROADMAP.md) - Development plans and timeline

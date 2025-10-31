@@ -1,41 +1,28 @@
-# Advanced Job Search System for Neuro
+# Neuro Job Search System
 
-This enhanced job search system extends Neuro to help you find positions as a prompt engineer or AI engineer at the junior level. It searches multiple platforms, matches your profile, and prepares tailored resumes.
+An advanced, intent-driven job search system built with Neuro programming language. Search multiple platforms, match your profile automatically, and prepare tailored resumes - all declared in natural language using Neuro syntax.
 
-## Features
+## 🎯 What It Does
 
-### 🔍 Multi-Platform Search
-- **Wellfound** (formerly AngelList) - Startup and tech jobs
-- **RemoteOK** - Remote positions worldwide
-- **Indeed** - Major job board
-- **LinkedIn** - Professional network
-- **Startup Boards** - Y Combinator, Techstars, Work at a Startup
+This system extends Neuro to help you find jobs by:
 
-### 🎯 Profile Matching
-- Scores each job against your profile (0-100%)
-- Matches based on:
-  - Job title relevance
-  - Required skills
-  - Location preferences
-  - Experience level
-  - Remote preferences
+1. **Multi-Platform Search** - Searches Wellfound, RemoteOK, Indeed, LinkedIn, and startup boards simultaneously
+2. **Profile Matching** - Automatically scores jobs (0-100%) against your profile
+3. **Resume Tailoring** - Prepares customized resumes for specific job applications
+4. **Weekly Automation** - Runs automatically on a schedule
+5. **Intent-Driven** - Write your job search requirements in Neuro syntax (`.neuro` files)
 
-### 📝 Resume Preparation
-- Tailors your resume for specific job postings
-- Extracts keywords from job descriptions
-- Generates customized cover letters
-- Highlights relevant experience
+## 🚀 Quick Start
 
-### 📅 Weekly Automation
-- Automatically runs job searches on a schedule
-- Saves results and generates reports
-- Prepares resumes for top matches
+### 1. Install Dependencies
 
-## Quick Start
+```bash
+pip install -r requirements_job_search.txt
+```
 
-### 1. Configure Your Profile
+### 2. Configure Your Profile
 
-Edit `profile_config.json` to match your profile:
+Edit `profile_config.json`:
 
 ```json
 {
@@ -46,171 +33,304 @@ Edit `profile_config.json` to match your profile:
   "experience_level": "junior",
   "locations": ["remote", "US"],
   "remote_preference": true,
-  "resume_path": "path/to/your/resume.txt"
+  "resume_path": "path/to/your/resume.docx"
 }
 ```
 
-### 2. Run a Job Search
+### 3. Write Your Job Search Intent in Neuro
 
-```bash
-python run_advanced_job_search.py
+Create or edit `my_job_search.neuro`:
+
+```neuro
+pipeline FindAIPositions {
+    goal: "Find prompt engineer and AI engineer jobs with remote-first companies"
+    
+    target_roles: ["prompt engineer", "ai engineer", "ml engineer"]
+    locations: ["remote", "US", "Boston", "New York"]
+    company_policy: "remote first"
+    skills: ["python", "pytorch", "llm", "gpt", "transformers"]
+    experience: "junior level"
+    
+    actions: [
+        search_job_boards(),
+        filter_remote_first(),
+        match_skills(),
+        generate_applications(),
+        track_responses()
+    ]
+}
 ```
 
-This will:
-- Search all configured platforms
-- Score and rank jobs by match
-- Generate a detailed report
-- Optionally prepare tailored resumes for top matches
-
-### 3. Set Up Weekly Searches
+### 4. Run Your Job Search
 
 ```bash
-# Run immediately
+python run_neuro.py my_job_search.neuro
+```
+
+That's it! Neuro executes your intent and searches for jobs.
+
+## 📋 Features
+
+### Multi-Platform Job Search
+
+Searches across:
+- **Wellfound** (formerly AngelList) - Startup jobs
+- **RemoteOK** - Remote positions
+- **Indeed** - Major job board
+- **LinkedIn** - Professional network
+- **Startup Boards** - Y Combinator, Techstars, Work at a Startup
+
+### Profile Matching
+
+Automatically scores each job against your profile:
+- **Title Match** (35 points) - How well job title matches your target roles
+- **Skills Match** (35 points) - Checks job description for your skills
+- **Location Match** (20 points) - Remote/location preferences
+- **Experience Match** (10 points) - Junior/mid/senior level
+
+### Resume Tailoring
+
+For each job, the system:
+- Extracts keywords from job description
+- Identifies required skills
+- Tailors your resume to highlight relevant experience
+- Generates customized cover letters
+
+### Weekly Automation
+
+Set up Windows Task Scheduler to run automatically:
+- Every Monday at 9 AM (or your schedule)
+- Saves results and generates reports
+- Prepares resumes for top matches
+
+## 📖 Documentation
+
+- **[QUICK_START.md](QUICK_START.md)** - Get started in 3 steps
+- **[USING_NEURO_FILES.md](USING_NEURO_FILES.md)** - How to write Neuro syntax
+- **[WEEKLY_SETUP_INSTRUCTIONS.md](WEEKLY_SETUP_INSTRUCTIONS.md)** - Set up automation
+- **[RESUME_SETUP.md](RESUME_SETUP.md)** - Configure your resume
+- **[JOB_SEARCH_README.md](JOB_SEARCH_README.md)** - Full documentation (this file)
+
+## 💡 Example Usage
+
+### Basic Search
+
+```neuro
+pipeline BasicSearch {
+    target_roles: ["ai engineer"]
+    locations: ["remote"]
+    skills: ["python", "pytorch"]
+    actions: [search_job_boards()]
+}
+```
+
+### Full Featured Search
+
+```neuro
+pipeline FullSearch {
+    goal: "Find junior AI engineering positions"
+    target_roles: ["prompt engineer", "ai engineer"]
+    locations: ["remote", "US"]
+    skills: ["python", "llm", "gpt", "transformers"]
+    experience: "junior level"
+    company_policy: "remote first"
+    actions: [
+        search_job_boards(),
+        match_skills(),
+        generate_applications()
+    ]
+}
+```
+
+## 🔧 View Results
+
+After running a search:
+
+```bash
+# View most recent results
+python display_results.py
+
+# View specific results file
+python display_results.py job_search_results/job_search_20251030_210201.json
+```
+
+## 🤖 Automation
+
+### Weekly Schedule
+
+```bash
+# Run immediately (test)
 python schedule_job_search.py --run-now
 
 # Schedule for every Monday at 9 AM
 python schedule_job_search.py --day monday --time 09:00
 ```
 
-## Usage
+### Windows Task Scheduler (Recommended)
 
-### One-Time Search
+1. Open Task Scheduler
+2. Create Basic Task → "Neuro Weekly Job Search"
+3. Trigger: Weekly, Monday 9 AM
+4. Action: Run `run_weekly_job_search.bat`
+5. Done!
 
-```bash
-python run_advanced_job_search.py
+See [WEEKLY_SETUP_INSTRUCTIONS.md](WEEKLY_SETUP_INSTRUCTIONS.md) for details.
+
+## 🎨 How It Works
+
+### 1. Intent Declaration (Neuro Syntax)
+
+Write what you want in natural language + simple structure:
+
+```neuro
+pipeline FindAIPositions {
+    target_roles: ["prompt engineer"]
+    skills: ["python", "llm"]
+    actions: [search_job_boards(), match_skills()]
+}
 ```
 
-### Weekly Scheduled Search
+### 2. Neuro Execution
 
-```bash
-# Start the scheduler (runs every Monday at 9 AM by default)
-python schedule_job_search.py
-
-# Custom schedule
-python schedule_job_search.py --day friday --time 18:00
-
-# Run immediately without scheduling
-python schedule_job_search.py --run-now
-```
-
-### Prepare Resume for Specific Job
-
-```python
-from resume_preparer import ResumePreparer
-
-preparer = ResumePreparer("path/to/your/resume.txt")
-prepared = preparer.prepare_for_job(
-    job_title="AI Engineer",
-    company="Example Company",
-    job_description="Job description text...",
-    job_url="https://example.com/job"
-)
-
-# Files saved in resume_templates/
-```
-
-## Output Structure
-
-```
-job_search_results/
-  └── job_search_YYYYMMDD_HHMMSS.json    # Full search results
-
-job_search_reports/
-  └── weekly_report_YYYYMMDD_HHMMSS.txt   # Human-readable reports
-
-resume_templates/
-  ├── resume_company_title_YYYYMMDD.txt  # Tailored resumes
-  └── cover_company_title_YYYYMMDD.txt    # Cover letters
-```
-
-## Integration with Neuro
-
-The system works with your `my_job_search.neuro` file. When you run:
+Neuro parses your intent and executes the advanced job search system:
 
 ```bash
 python run_neuro.py my_job_search.neuro
 ```
 
-It will use the advanced job search system if available, falling back to basic search otherwise.
+### 3. Results
 
-## Customization
+- Searches all platforms
+- Scores jobs against your profile
+- Generates reports
+- Prepares tailored resumes (if enabled)
 
-### Adding New Job Platforms
+## 🔍 Job Scraping
 
-Edit `advanced_job_search.py` and add a new search method:
+The system uses BeautifulSoup to scrape actual job listings:
 
-```python
-def search_new_platform(self) -> List[JobListing]:
-    """Search a new platform"""
-    jobs = []
-    # Your search logic here
-    return jobs
+- **Indeed** - Scrapes job details, descriptions, dates
+- **RemoteOK** - Uses their JSON API
+- **Other platforms** - Generates search URLs (they block scraping)
+
+**Note**: Some sites block automated scraping (this is normal). The system gracefully falls back to search URLs.
+
+## 📊 Output
+
+### Results Saved To:
+
+- `job_search_results/job_search_YYYYMMDD_HHMMSS.json` - Full results
+- `job_search_reports/weekly_report_YYYYMMDD_HHMMSS.txt` - Human-readable report
+- `resume_templates/` - Tailored resumes (if enabled)
+
+### View Results:
+
+```bash
+python display_results.py
 ```
 
-Then add it to `search_all_platforms()`.
+Shows:
+- Summary statistics
+- Jobs sorted by match score
+- Jobs grouped by platform
+- Full job details
 
-### Adjusting Match Scoring
+## 🛠️ Requirements
 
-Edit the `_calculate_match_score()` method in `JobSearchEngine` to adjust how jobs are scored against your profile.
+- Python 3.8+
+- `beautifulsoup4` - For web scraping
+- `requests` - For HTTP requests
+- `schedule` - For weekly automation
+- `python-docx` - For Word document support
 
-### Resume Tailoring
+Install all:
+```bash
+pip install -r requirements_job_search.txt
+```
 
-Customize resume preparation in `resume_preparer.py`:
-- `_tailor_resume()` - Main tailoring logic
-- `_enhance_skills_section()` - Skills matching
-- `_generate_cover_letter()` - Cover letter generation
+## 🔒 Privacy
 
-## Tips for Success
+Your personal files are protected:
+- `profile_config.json` - Not committed (contains your info)
+- `job_search_results/` - Not committed (your search history)
+- `resume_templates/` - Not committed (tailored resumes)
+- `*.pdf`, `*.docx` - Not committed (your resume files)
 
-1. **Keep your profile updated**: Update `profile_config.json` as you gain new skills
-2. **Review top matches weekly**: Focus on jobs with >70% match scores
-3. **Customize resumes**: Use the prepared resumes as a starting point, but customize them further
-4. **Track applications**: Keep a spreadsheet of where you've applied
-5. **Follow up**: Follow up on applications after 1 week
+See `.gitignore` for full list.
 
-## Uploading Your Resume
+## 🌟 Why This Is Better
 
-To use your own formatted resume:
+### vs Traditional Approach (2020 BeautifulSoup/Selenium):
 
-1. Place your resume file in the project directory
-2. Update `resume_path` in `profile_config.json` to point to your file
-3. The system will use it for all resume preparations
+| Feature | Traditional | Neuro System |
+|---------|------------|--------------|
+| **Ease of Use** | Requires Python knowledge | Intent-driven (`.neuro` files) |
+| **Job Scraping** | ✅ Yes | ✅ Yes |
+| **Profile Matching** | ❌ None | ✅ Automatic scoring |
+| **Resume Prep** | ❌ Manual | ✅ Automatic tailoring |
+| **Automation** | ⚠️ Manual | ✅ Weekly scheduler |
+| **Multi-Platform** | ⚠️ Single platform | ✅ 5+ platforms |
+| **Intent-Driven** | ❌ Python code | ✅ Neuro syntax |
 
-Supported formats: `.txt`, `.md` (text-based formats work best for keyword matching)
+## 📝 Files Structure
 
-## Troubleshooting
+```
+Neuro/
+├── advanced_job_search.py      # Main job search engine
+├── resume_preparer.py           # Resume tailoring
+├── schedule_job_search.py      # Weekly automation
+├── display_results.py           # Results viewer
+├── run_neuro.py                 # Neuro executor
+├── my_job_search.neuro          # Your job search intent
+├── profile_config.json          # Your profile (not committed)
+├── requirements_job_search.txt  # Dependencies
+└── Documentation/
+    ├── QUICK_START.md
+    ├── USING_NEURO_FILES.md
+    ├── WEEKLY_SETUP_INSTRUCTIONS.md
+    └── ...
+```
 
-### No jobs found
-- Check your internet connection
-- Some platforms may require manual search (links are generated)
-- Try running `--run-now` to see immediate results
+## 🚀 Next Steps
 
-### Resume preparation fails
-- Ensure your resume file path is correct in `profile_config.json`
-- Check that the file exists and is readable
-- Verify the file is in a text-based format
+1. ✅ Configure your profile (`profile_config.json`)
+2. ✅ Write your job search intent (`my_job_search.neuro`)
+3. ✅ Run your first search: `python run_neuro.py my_job_search.neuro`
+4. ✅ Set up weekly automation (Windows Task Scheduler)
+5. ✅ Apply to top matches!
 
-### Scheduler not running
-- Make sure the `schedule` package is installed: `pip install schedule`
-- Check that you're running Python 3.8+
-- The scheduler runs continuously - press Ctrl+C to stop
+## 🤝 Contributing
 
-## Next Steps
+This is part of the Neuro programming language project. Contributions welcome!
 
-- [ ] Set up weekly email notifications
-- [ ] Integrate with job board APIs (when available)
-- [ ] Add application tracking database
-- [ ] Create interview preparation tools
-- [ ] Add more startup job boards
+## 📄 License
 
-## Support
+Same license as Neuro project (MIT).
 
-For issues or questions:
-1. Check the `examples/` directory for usage examples
-2. Review the code comments in each module
-3. Update your Neuro intent file (`my_job_search.neuro`) to match your goals
+## 🎯 Philosophy
+
+This demonstrates Neuro's core principle: **Intent-Driven Programming**
+
+Instead of writing:
+```python
+# 200 lines of Python code...
+jobs = search_indeed()
+jobs += search_remoteok()
+for job in jobs:
+    score = match_profile(job)
+    ...
+```
+
+You write:
+```neuro
+pipeline FindAIPositions {
+    target_roles: ["ai engineer"]
+    actions: [search_job_boards(), match_skills()]
+}
+```
+
+**Declare what you want. Neuro figures out how.**
 
 ---
 
-**Happy job hunting! 🚀**
-
+**Built with [Neuro](https://github.com/ElaMCB/Neuro) - Making AI development accessible through intent-driven programming.**
