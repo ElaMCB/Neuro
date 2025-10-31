@@ -1,0 +1,5 @@
+paradigm IntentDrivenAI {
+    principle: "Describe what, not how"
+    execution: "AI handles implementation"
+    interface: "Natural language + structured constraints"
+}
