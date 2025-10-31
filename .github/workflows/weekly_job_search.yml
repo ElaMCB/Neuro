@@ -57,20 +57,26 @@ jobs:
     - name: Run weekly job search
       continue-on-error: true
       run: |
-        # Use advanced job search if available, fallback to simple version
-        if [ -f run_advanced_job_search.py ]; then
-          echo "🔍 Running advanced job search..."
-          python run_advanced_job_search.py || echo "⚠️  Advanced job search failed, continuing..."
+        # Use improved job search (gets real jobs), fallback to advanced, then simple
+        if [ -f improved_job_search.py ]; then
+          echo "Running improved job search (gets REAL jobs)..."
+          python improved_job_search.py || echo "WARNING: Improved search failed, continuing..."
+        elif [ -f run_advanced_job_search.py ]; then
+          echo "Running advanced job search..."
+          python run_advanced_job_search.py || echo "WARNING: Advanced job search failed, continuing..."
         else
-          echo "🔍 Running simple job search..."
-          python run_neuro.py my_job_search.neuro || echo "⚠️  Job search script exited with error, continuing..."
+          echo "Running simple job search..."
+          python run_neuro.py my_job_search.neuro || echo "WARNING: Job search script exited with error, continuing..."
         fi
     
     - name: Generate results report
       continue-on-error: true
       run: |
         # Get most recent results file
-        if [ -d job_search_results ]; then
+        # Check for improved_results.json first, then job_search_results directory
+        if [ -f improved_results.json ]; then
+          LATEST_RESULT="improved_results.json"
+        elif [ -d job_search_results ]; then
           LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
           if [ -n "$LATEST_RESULT" ]; then
             # Generate text report
@@ -107,6 +113,8 @@ jobs:
           job_search_reports/**
           resume_templates/**
           job_search_report.html
+          improved_results.json
+          my_job_search_report.html
         if-no-files-found: ignore
         retention-days: 30
     
