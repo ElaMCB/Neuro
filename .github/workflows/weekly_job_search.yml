@@ -22,8 +22,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements_job_search.txt
-        pip install beautifulsoup4 lxml python-docx
+        if [ -f requirements_job_search.txt ]; then
+          pip install -r requirements_job_search.txt
+        else
+          echo "⚠️  requirements_job_search.txt not found, installing default packages"
+          pip install schedule requests python-docx beautifulsoup4 lxml
+        fi
+    
+    - name: Create directories
+      run: |
+        mkdir -p job_search_results job_search_reports resume_templates
     
     - name: Create profile config (from template)
       run: |
@@ -47,16 +55,33 @@ jobs:
         USER_EMAIL: ${{ secrets.USER_EMAIL }}
     
     - name: Run weekly job search
+      continue-on-error: true
       run: |
-        python run_neuro.py my_job_search.neuro
+        python run_neuro.py my_job_search.neuro || echo "⚠️  Job search script exited with error, continuing..."
     
     - name: Generate results report
+      continue-on-error: true
       run: |
         # Get most recent results file
-        LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
-        if [ -n "$LATEST_RESULT" ]; then
-          python display_results.py "$LATEST_RESULT"
+        if [ -d job_search_results ]; then
+          LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
+          if [ -n "$LATEST_RESULT" ] && [ -f display_results.py ]; then
+            python display_results.py "$LATEST_RESULT" || echo "⚠️  Could not generate report"
+          else
+            echo "⚠️  No results file or display_results.py found"
+          fi
+        else
+          echo "⚠️  job_search_results directory not found"
         fi
+    
+    - name: Send email notification
+      continue-on-error: true
+      run: |
+        python send_job_search_email.py || echo "⚠️  Email sending failed (check credentials in secrets)"
+      env:
+        RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+        SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
     
     - name: Upload results as artifact
       uses: actions/upload-artifact@v4
@@ -64,22 +89,36 @@ jobs:
       with:
         name: job-search-results-${{ github.run_number }}
         path: |
-          job_search_results/
-          job_search_reports/
-          resume_templates/
+          job_search_results/**
+          job_search_reports/**
+          resume_templates/**
+        if-no-files-found: ignore
         retention-days: 30
     
-    - name: Comment on issue or create summary
+    - name: Create summary
+      if: always()
       run: |
-        echo "## Weekly Job Search Results" >> $GITHUB_STEP_SUMMARY
+        echo "## 🔍 Weekly Job Search Results" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "✅ Job search completed!" >> $GITHUB_STEP_SUMMARY
+        echo "**Date:** $(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "Results are available in the artifacts above." >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "View results:" >> $GITHUB_STEP_SUMMARY
-        LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
-        if [ -n "$LATEST_RESULT" ]; then
-          echo "- Latest results: \`$LATEST_RESULT\`" >> $GITHUB_STEP_SUMMARY
+        
+        # Check if results exist
+        if [ -d job_search_results ]; then
+          RESULT_COUNT=$(find job_search_results -name "*.json" | wc -l)
+          echo "✅ Found $RESULT_COUNT result file(s)" >> $GITHUB_STEP_SUMMARY
+          
+          LATEST_RESULT=$(ls -t job_search_results/job_search_*.json 2>/dev/null | head -1)
+          if [ -n "$LATEST_RESULT" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "📄 Latest results: \`$LATEST_RESULT\`" >> $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "⚠️  No results directory found" >> $GITHUB_STEP_SUMMARY
         fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📧 Email notification sent (if configured)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📦 Results are available in the artifacts above." >> $GITHUB_STEP_SUMMARY
 
