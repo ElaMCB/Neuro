@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuro Job Search Results - 2025-10-31</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .date { opacity: 0.9; font-size: 1.1em; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stat-card .number { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .stat-card .label { color: #6c757d; margin-top: 5px; }
+        .profile-section { padding: 30px 40px; background: #fff; border-bottom: 2px solid #e9ecef; }
+        .profile-section h2 { color: #667eea; margin-bottom: 15px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .jobs-section { padding: 30px 40px; }
+        .jobs-section h2 { color: #667eea; margin-bottom: 20px; font-size: 1.8em; }
+        .job-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .job-card:hover {
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .match-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        .match-high { background: #28a745; }
+        .match-medium { background: #ffc107; color: #333; }
+        .match-low { background: #dc3545; }
+        .job-title { font-size: 1.5em; font-weight: 700; margin-bottom: 10px; padding-right: 120px; }
+        .job-company { font-size: 1.1em; color: #667eea; margin-bottom: 10px; font-weight: 600; }
+        .job-meta { color: #6c757d; margin: 10px 0; }
+        .job-description { color: #495057; line-height: 1.6; margin: 15px 0; }
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 10px 5px 10px 0;
+        }
+        .platform-wellfound { background: #ffeaa7; }
+        .platform-indeed { background: #74b9ff; }
+        .platform-linkedin { background: #0077b5; color: white; }
+        .platform-startup_board { background: #fd79a8; color: white; }
+        .platform-remoteok { background: #a29bfe; color: white; }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #5568d3; transform: translateY(-1px); }
+        .footer { background: #f8f9fa; padding: 30px; text-align: center; color: #6c757d; }
+        @media (max-width: 768px) {
+            .match-badge { position: static; margin-bottom: 10px; }
+            .job-title { padding-right: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Neuro Job Search Results</h1>
+            <p class="date">Generated: October 31, 2025 at 07:03 PM</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number">18</div>
+                <div class="label">Total Jobs</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">0</div>
+                <div class="label">High Matches (>70%)</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">18</div>
+                <div class="label">Medium Matches</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">4</div>
+                <div class="label">Platforms</div>
+            </div>
+        </div>
+        
+        <div class="profile-section">
+            <h2>👤 Your Profile</h2>
+            <div>
+                <strong>Name:</strong> Elena Mereanu<br>
+                <strong>Experience:</strong> junior<br>
+                <strong>Remote Preference:</strong> Yes ✅
+            </div>
+            <div style="margin-top: 15px;">
+                <strong>Target Roles:</strong>
+                <div class="tags">
+                    <span class="tag">prompt engineer</span><span class="tag">ai engineer</span><span class="tag">ml engineer</span>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <strong>Skills:</strong>
+                <div class="tags">
+                    <span class="tag">python</span><span class="tag">pytorch</span><span class="tag">llm</span><span class="tag">gpt</span><span class="tag">transformers</span>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <strong>Locations:</strong>
+                <div class="tags">
+                    <span class="tag">remote</span><span class="tag">US</span><span class="tag">Boston</span><span class="tag">New York</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="jobs-section">
+            <h2>💼 Job Listings (18 jobs found)</h2>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Prompt Engineer - Startup</h3>
+                <div class="job-company">Wellfound Search</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-wellfound">wellfound</span>
+                </div>
+                <div class="job-description">Search results for prompt engineer on Wellfound - startup and tech jobs</div>
+                <a href="https://wellfound.com/role/l/prompt%20engineer" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ai Engineer - Startup</h3>
+                <div class="job-company">Wellfound Search</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-wellfound">wellfound</span>
+                </div>
+                <div class="job-description">Search results for ai engineer on Wellfound - startup and tech jobs</div>
+                <a href="https://wellfound.com/role/l/ai%20engineer" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ml Engineer - Startup</h3>
+                <div class="job-company">Wellfound Search</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-wellfound">wellfound</span>
+                </div>
+                <div class="job-description">Search results for ml engineer on Wellfound - startup and tech jobs</div>
+                <a href="https://wellfound.com/role/l/ml%20engineer" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Prompt Engineer - Y Combinator</h3>
+                <div class="job-company">Y Combinator</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">prompt engineer positions at Y Combinator</div>
+                <a href="https://www.ycombinator.com/jobs" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ai Engineer - Y Combinator</h3>
+                <div class="job-company">Y Combinator</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ai engineer positions at Y Combinator</div>
+                <a href="https://www.ycombinator.com/jobs" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ml Engineer - Y Combinator</h3>
+                <div class="job-company">Y Combinator</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ml engineer positions at Y Combinator</div>
+                <a href="https://www.ycombinator.com/jobs" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Prompt Engineer - Techstars</h3>
+                <div class="job-company">Techstars</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">prompt engineer positions at Techstars</div>
+                <a href="https://jobs.techstars.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ai Engineer - Techstars</h3>
+                <div class="job-company">Techstars</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ai engineer positions at Techstars</div>
+                <a href="https://jobs.techstars.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ml Engineer - Techstars</h3>
+                <div class="job-company">Techstars</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ml engineer positions at Techstars</div>
+                <a href="https://jobs.techstars.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Prompt Engineer - Work at a Startup</h3>
+                <div class="job-company">Work at a Startup</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">prompt engineer positions at Work at a Startup</div>
+                <a href="https://www.workatastartup.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ai Engineer - Work at a Startup</h3>
+                <div class="job-company">Work at a Startup</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ai engineer positions at Work at a Startup</div>
+                <a href="https://www.workatastartup.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">60% Match</div>
+                <h3 class="job-title">Ml Engineer - Work at a Startup</h3>
+                <div class="job-company">Work at a Startup</div>
+                <div class="job-meta">
+                    📍 Remote/Global
+                    <span class="platform-badge platform-startup_board">startup_board</span>
+                </div>
+                <div class="job-description">ml engineer positions at Work at a Startup</div>
+                <a href="https://www.workatastartup.com/" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Prompt Engineer - Indeed</h3>
+                <div class="job-company">Indeed Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-indeed">indeed</span>
+                </div>
+                <div class="job-description">prompt engineer positions from Indeed</div>
+                <a href="https://www.indeed.com/jobs?q=prompt+engineer&l=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Ai Engineer - Indeed</h3>
+                <div class="job-company">Indeed Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-indeed">indeed</span>
+                </div>
+                <div class="job-description">ai engineer positions from Indeed</div>
+                <a href="https://www.indeed.com/jobs?q=ai+engineer&l=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Ml Engineer - Indeed</h3>
+                <div class="job-company">Indeed Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-indeed">indeed</span>
+                </div>
+                <div class="job-description">ml engineer positions from Indeed</div>
+                <a href="https://www.indeed.com/jobs?q=ml+engineer&l=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Prompt Engineer - LinkedIn</h3>
+                <div class="job-company">LinkedIn Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-linkedin">linkedin</span>
+                </div>
+                <div class="job-description">prompt engineer positions from LinkedIn</div>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=prompt%20engineer&location=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Ai Engineer - LinkedIn</h3>
+                <div class="job-company">LinkedIn Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-linkedin">linkedin</span>
+                </div>
+                <div class="job-description">ai engineer positions from LinkedIn</div>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=ai%20engineer&location=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+            <div class="job-card">
+                <div class="match-badge match-medium">55% Match</div>
+                <h3 class="job-title">Ml Engineer - LinkedIn</h3>
+                <div class="job-company">LinkedIn Search</div>
+                <div class="job-meta">
+                    📍 remote
+                    <span class="platform-badge platform-linkedin">linkedin</span>
+                </div>
+                <div class="job-description">ml engineer positions from LinkedIn</div>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=ml%20engineer&location=remote&remote=true" target="_blank" class="btn">View Job →</a>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            <p><strong>Neuro</strong> - The Intent-Driven Language for AI</p>
+            <p style="margin-top: 10px;">🔗 <a href="https://github.com/ElaMCB/Neuro" style="color: #667eea;">GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>

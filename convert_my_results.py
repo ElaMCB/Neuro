@@ -241,19 +241,19 @@ def main():
     json_file = sys.argv[1]
     
     if not Path(json_file).exists():
-        print(f"❌ File not found: {json_file}")
+        print(f"ERROR: File not found: {json_file}")
         sys.exit(1)
     
-    print(f"📁 Reading: {json_file}")
+    print(f"Reading: {json_file}")
     
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
     except Exception as e:
-        print(f"❌ Error reading JSON: {e}")
+        print(f"ERROR: Error reading JSON: {e}")
         sys.exit(1)
     
-    print("🎨 Generating beautiful HTML report...")
+    print("Generating beautiful HTML report...")
     
     html = create_html_report(data)
     
@@ -261,7 +261,7 @@ def main():
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html)
     
-    print(f"✅ Report generated: {output_file}")
+    print(f"Report generated: {output_file}")
     print(f"   Double-click the file to open in your browser!")
     
     # Try to open automatically
@@ -269,7 +269,7 @@ def main():
     try:
         abs_path = Path(output_file).absolute()
         webbrowser.open(f"file:///{abs_path}")
-        print(f"🌐 Opening in browser...")
+        print(f"Opening in browser...")
     except:
         print(f"   Or open manually in your browser")
 
