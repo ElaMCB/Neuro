@@ -1,17 +1,29 @@
 <div align="center">
 
+<br/>
+
+<h1>
+
 ```
-░░▒▓█ N E U R O █▓▒░░
+░░▒▓█  N  E  U  R  O  █▓▒░░
 ```
 
-</div>
+</h1>
 
-# Neuro: The Intent-Driven Language for AI
+<br/>
 
 ![Neuro Version](https://img.shields.io/badge/version-0.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-pre--alpha-orange)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+
+<br/>
+
+### AI intent driven programming language
+
+<br/>
+
+</div>
 
 > "What if you could describe what you want, not how to build it?"
 
