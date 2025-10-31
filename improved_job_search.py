@@ -10,13 +10,20 @@ from datetime import datetime
 from pathlib import Path
 
 def is_ai_ml_job(title, description):
-    """Check if job is actually AI/ML/Prompt Engineering related"""
+    """Check if job is AI/ML related - includes ANY role with AI in it"""
     
     # Convert to lowercase for matching
     title_lower = title.lower()
     desc_lower = description.lower() if description else ""
     
-    # MUST match one of these in title or description
+    # Check for "AI" in title with word boundaries
+    # This catches: AI Engineer, AI Manager, AI Test Engineer, AI Implementation, etc.
+    if re.search(r'\bai\b', title_lower):
+        # Exclude false positives
+        if not any(x in title_lower for x in ['email', 'gmail', 'detail', 'retail', 'mla ', 'nail', 'hair', 'waiter', 'waitr']):
+            return True
+    
+    # Comprehensive AI/ML keywords that must appear in title or description
     ai_ml_keywords = [
         'artificial intelligence',
         'machine learning',
@@ -31,46 +38,38 @@ def is_ai_ml_job(title, description):
         'natural language processing',
         'computer vision',
         'ml engineer',
-        'ai engineer',
         'ml ops',
         'mlops',
-        'data scientist', # Often works on ML
-        'research scientist', # Often AI research
+        'data scientist',
+        'research scientist',
+        'conversational ai',
+        'generative ai',
+        'ai/ml',
     ]
     
-    # Check title first (most important)
+    # Check title for any AI/ML keyword
     for keyword in ai_ml_keywords:
         if keyword in title_lower:
             return True
     
-    # Check if description has strong AI/ML indicators
-    # Need at least 2 matches in description to avoid false positives
+    # Check for ML with word boundaries
+    if re.search(r'\bml\b', title_lower):
+        if not any(x in title_lower for x in ['email', 'gmail', 'html', 'xml', 'yaml']):
+            return True
+    
+    # For description, need strong indicators (at least 2 matches)
+    # This catches jobs that don't have AI in title but are AI-focused
     matches = sum(1 for keyword in ai_ml_keywords if keyword in desc_lower)
     if matches >= 2:
         return True
     
-    # Specific job title patterns that indicate AI/ML
-    ai_ml_titles = [
-        r'\bai\b',  # Word boundary for "AI" (not in "training")
-        r'\bml\b',  # Word boundary for "ML"
-        r'machine learning',
-        r'deep learning',
-        r'data scien',
-        r'research scien',
-    ]
-    
-    for pattern in ai_ml_titles:
-        if re.search(pattern, title_lower):
-            # Double check it's not a false positive like "email"
-            if not any(x in title_lower for x in ['email', 'gmail', 'detail', 'retail', 'mla ']):
-                return True
-    
     return False
 
 def search_ai_ml_jobs():
-    """Search and get REAL AI/ML/Prompt Engineering jobs only"""
+    """Search and get ALL AI-related jobs (any role with AI in title)"""
     
-    print("Searching for AI/ML/Prompt Engineering jobs...")
+    print("Searching for ALL AI-related jobs...")
+    print("Includes: AI Engineers, AI Managers, AI Test Engineers, etc.")
     print("=" * 60)
     
     all_jobs = []
@@ -85,7 +84,7 @@ def search_ai_ml_jobs():
         # Skip metadata (first entry)
         jobs = data[1:] if len(data) > 0 and data[0].get('id') == '0' else data
         
-        print(f"   Downloaded {len(jobs)} jobs, filtering for AI/ML...")
+        print(f"   Downloaded {len(jobs)} jobs, filtering for AI-related positions...")
         
         for job in jobs:
             position = job.get('position', '')
@@ -97,8 +96,11 @@ def search_ai_ml_jobs():
                 # Simple HTML strip
                 description = re.sub(r'<[^>]+>', ' ', description)
             
-            # Apply strict AI/ML filter
+            # Apply AI/ML filter (now includes any role with AI in title)
             if is_ai_ml_job(position, description):
+                # Score based on how directly AI-related
+                match_score = 90.0 if 'ai' in position.lower() or 'machine learning' in position.lower() else 85.0
+                
                 all_jobs.append({
                     "title": position,
                     "company": company,
@@ -107,12 +109,12 @@ def search_ai_ml_jobs():
                     "description": (description[:500] if isinstance(description, str) else ''),
                     "platform": "remoteok",
                     "posted_date": job.get('date', None),
-                    "match_score": 85.0,  # High match for AI/ML jobs
+                    "match_score": match_score,
                     "required_skills": [],
                     "preferred_skills": []
                 })
         
-        print(f"   SUCCESS: Found {len(all_jobs)} AI/ML jobs!")
+        print(f"   SUCCESS: Found {len(all_jobs)} AI-related jobs!")
         
     except Exception as e:
         print(f"   ERROR: {e}")

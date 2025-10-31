@@ -1,5 +1,5 @@
 {
-  "search_date": "2025-10-31T19:19:44.681755",
+  "search_date": "2025-10-31T19:23:46.395824",
   "profile": {
     "name": "Elena Mereanu",
     "email": "elena.mereanu@gmail.com",
@@ -28,6 +28,54 @@
   },
   "jobs": [
     {
+      "title": "Support Enablement Program Manager Tech Fluency and AI",
+      "company": "Samsara",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-support-enablement-program-manager-tech-fluency-and-ai-samsara-1128634",
+      "description": "As a Support Enablement Program Manager, you will be responsible for driving the success of our support teams through effective training and enablement programs. You will work closely with cross-functional teams to develop and implement strategies that enhance the skills and knowledge of our support staff. Your role will involve analyzing performance metrics, identifying training needs, and creating engaging learning experiences. You will also be responsible for managing projects related to supp",
+      "platform": "remoteok",
+      "posted_date": "2025-10-29T16:01:03+00:00",
+      "match_score": 90.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
+      "title": "AI Red Teamer",
+      "company": "HiddenLayer",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-ai-red-teamer-hiddenlayer-1128628",
+      "description": "  AI Red Teamer  \n  Location: United States - Fully Remote  \n  ABOUT THE ROLE:  \n As an AI Red Teamer at HiddenLayer, you will play a pivotal role in the ML Threat Operations group. In this role will evaluate the security of AI systems, focusing on both predictive and generative AI models. You will identify vulnerabilities, simulate adversarial attacks, and provide actionable recommendations to improve the security of AI systems. The ideal candidate is a proactive problem solver with hands-on ex",
+      "platform": "remoteok",
+      "posted_date": "2025-10-28T19:00:16+00:00",
+      "match_score": 90.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
+      "title": "Operations LeadâAI Powered Quoting Content Communications",
+      "company": "Ascent Yard Care",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-operations-lead-ai-powered-quoting-content-communications-ascent-yard-care-1128596",
+      "description": "  Company: Ascent Yard Care    Compensation: $3,350.00 USD monthly. Paid via Wise. Pay raises and bonuses for top performers.    Time zone: PST with 3â4 hours daily overlap Monday to Friday, async for the rest    Contract: Full-time contractor    TO APPLY: Read the entire job posting, complete the test project and submit the test project.    Â     Mission    Ascent Yard Care is restoring balance to British Columbiaâs ecosystems by eradicating the invasive species that threaten our planetâs",
+      "platform": "remoteok",
+      "posted_date": "2025-10-25T13:33:05+00:00",
+      "match_score": 90.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
+      "title": "Thai Audio Reviewer Help Improve AI Conversations",
+      "company": "CrowdGen by Appen",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-thai-audio-reviewer-help-improve-ai-conversations-crowdgen-by-appen-1128585",
+      "description": " AI is learning to better understand how Thai is spoken in different regions. In this project, youâll help improve Thai language accuracy by reviewing and correcting short audio clips. Your work will help make AI tools sound more natural and authentic for Thai speakers everywhere.      What youâll do      â· Listen to short Thai audio clips and check if the transcription matches the speech  â· Fix any mistakes you find  â· Work flexibly - no fixed schedule! Aim for 10 cases per day in you",
+      "platform": "remoteok",
+      "posted_date": "2025-10-24T12:00:02+00:00",
+      "match_score": 90.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
       "title": "Automation Engineer Contract",
       "company": "Goodway Group",
       "location": "Remote",
@@ -40,6 +88,30 @@
       "preferred_skills": []
     },
     {
+      "title": "Principal Software Engineer",
+      "company": "Coforma",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-principal-software-engineer-coforma-1128668",
+      "description": "  We are looking for an experienced, product-focused  Principal Software Engineer  to join our internal innovation lab at Coforma.       As a Principal Software Engineer, youâll be a hands-on technical leader and a key voice in shaping how we design, build, and scale modern applications in a fast-moving R&amp;D environment.&nbsp; Reporting to our Chief Innovation Officer (CINO), youâll bring depth in full-stack product engineering, DevSecOps best practices, and pragmatic architecture choices",
+      "platform": "remoteok",
+      "posted_date": "2025-10-30T08:00:34+00:00",
+      "match_score": 85.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
+      "title": "Senior Account Executive Energy",
+      "company": "Cognite",
+      "location": "Remote",
+      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-senior-account-executive-energy-cognite-1128663",
+      "description": "   About Cognite     Embark on a transformative journey with Cognite, a global SaaS forerunner in leveraging AI and data to unravel complex business challenges through our cutting-edge offerings including Cognite Atlas AI, an industrial agent workbench, and the Cognite Data Fusion (CDF) platform. We were awarded the 2022 Technology Innovation Leader for Global Digital Industrial Platforms &amp; Cognite was recognized as 2024 Microsoft Energy and Resources Partner of the Year. In the realm of ind",
+      "platform": "remoteok",
+      "posted_date": "2025-10-30T00:05:38+00:00",
+      "match_score": 85.0,
+      "required_skills": [],
+      "preferred_skills": []
+    },
+    {
       "title": "Computer Vision Applied Scientist",
       "company": "Pano AI",
       "location": "Remote",
@@ -47,54 +119,6 @@
       "description": "  Who we are        The problem:  Every minute matters in fire response.&nbsp; As climate change amplifies the intensity of wildfiresâwith longer fire seasons, drier fuels, and faster windsânew ignitions spread faster and put more communities at risk. Today, most wildfires are detected by bystanders and reported via 911, meaning it can take hours to detect a fire, verify its exact location and size, and dispatch first responders. Fire authorities need a faster way to detect, confirm, and pin",
       "platform": "remoteok",
       "posted_date": "2025-10-30T00:02:26+00:00",
-      "match_score": 85.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "Support Enablement Program Manager Tech Fluency and AI",
-      "company": "Samsara",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-support-enablement-program-manager-tech-fluency-and-ai-samsara-1128634",
-      "description": "As a Support Enablement Program Manager, you will be responsible for driving the success of our support teams through effective training and enablement programs. You will work closely with cross-functional teams to develop and implement strategies that enhance the skills and knowledge of our support staff. Your role will involve analyzing performance metrics, identifying training needs, and creating engaging learning experiences. You will also be responsible for managing projects related to supp",
-      "platform": "remoteok",
-      "posted_date": "2025-10-29T16:01:03+00:00",
-      "match_score": 85.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "AI Red Teamer",
-      "company": "HiddenLayer",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-ai-red-teamer-hiddenlayer-1128628",
-      "description": "  AI Red Teamer  \n  Location: United States - Fully Remote  \n  ABOUT THE ROLE:  \n As an AI Red Teamer at HiddenLayer, you will play a pivotal role in the ML Threat Operations group. In this role will evaluate the security of AI systems, focusing on both predictive and generative AI models. You will identify vulnerabilities, simulate adversarial attacks, and provide actionable recommendations to improve the security of AI systems. The ideal candidate is a proactive problem solver with hands-on ex",
-      "platform": "remoteok",
-      "posted_date": "2025-10-28T19:00:16+00:00",
-      "match_score": 85.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "Operations LeadâAI Powered Quoting Content Communications",
-      "company": "Ascent Yard Care",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-operations-lead-ai-powered-quoting-content-communications-ascent-yard-care-1128596",
-      "description": "  Company: Ascent Yard Care    Compensation: $3,350.00 USD monthly. Paid via Wise. Pay raises and bonuses for top performers.    Time zone: PST with 3â4 hours daily overlap Monday to Friday, async for the rest    Contract: Full-time contractor    TO APPLY: Read the entire job posting, complete the test project and submit the test project.    Â     Mission    Ascent Yard Care is restoring balance to British Columbiaâs ecosystems by eradicating the invasive species that threaten our planetâs",
-      "platform": "remoteok",
-      "posted_date": "2025-10-25T13:33:05+00:00",
-      "match_score": 85.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "Thai Audio Reviewer Help Improve AI Conversations",
-      "company": "CrowdGen by Appen",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-thai-audio-reviewer-help-improve-ai-conversations-crowdgen-by-appen-1128585",
-      "description": " AI is learning to better understand how Thai is spoken in different regions. In this project, youâll help improve Thai language accuracy by reviewing and correcting short audio clips. Your work will help make AI tools sound more natural and authentic for Thai speakers everywhere.      What youâll do      â· Listen to short Thai audio clips and check if the transcription matches the speech  â· Fix any mistakes you find  â· Work flexibly - no fixed schedule! Aim for 10 cases per day in you",
-      "platform": "remoteok",
-      "posted_date": "2025-10-24T12:00:02+00:00",
       "match_score": 85.0,
       "required_skills": [],
       "preferred_skills": []
@@ -224,11 +248,11 @@
     }
   ],
   "summary": {
-    "total_jobs": 15,
-    "high_matches": 15,
+    "total_jobs": 17,
+    "high_matches": 17,
     "medium_matches": 0,
     "low_matches": 0,
-    "real_jobs": 8,
+    "real_jobs": 10,
     "search_links": 7
   }
 }
