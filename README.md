@@ -79,8 +79,8 @@ pipeline FindJobs {
 
 <div align="center">
 
-💡 **Optional:** Add your OpenAI API key to enable natural language parsing  
-**→ [Enable AI Features](ENABLE_AI.md)**
+💡 **Optional:** Enable AI-powered natural language parsing  
+**→ [DeepSeek Setup](DEEPSEEK_SETUP.md)** (Recommended - 200x cheaper!) | **[OpenAI Setup](ENABLE_AI.md)**
 
 </div>
 

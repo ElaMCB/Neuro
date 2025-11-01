@@ -2,45 +2,77 @@
 
 ## 🧠 Turn On AI-Powered Parsing
 
-Neuro can use GPT-4 or Claude to understand natural language goals. Here's how to enable it:
+Neuro can use **DeepSeek**, **OpenAI GPT-4**, or other LLMs to understand natural language goals.
+
+**🌟 Recommended: DeepSeek** (200x cheaper than OpenAI!) → [DeepSeek Setup](DEEPSEEK_SETUP.md)
+
+Here's how to enable it:
 
 ---
 
 ## 🚀 Quick Setup
 
-### **1. Install OpenAI Package**
+### **Option 1: DeepSeek (Recommended - Cheapest!)**
 
 ```bash
+# 1. Install package
 pip install openai
+
+# 2. Get API key from https://platform.deepseek.com
+
+# 3. Set environment variable
+# Windows:
+set DEEPSEEK_API_KEY=sk-your-key-here
+
+# Mac/Linux:
+export DEEPSEEK_API_KEY=sk-your-key-here
+
+# 4. Run Neuro
+python neuro my_task.neuro
 ```
 
-### **2. Set API Key**
+**Cost:** ~$0.0001 per run (200x cheaper than GPT-4!)
 
-**Option A: Environment Variable**
+**→ [Complete DeepSeek Guide](DEEPSEEK_SETUP.md)**
+
+---
+
+### **Option 2: OpenAI (Alternative)**
+
 ```bash
-# Windows
-set OPENAI_API_KEY=your-api-key-here
+# 1. Install package
+pip install openai
 
-# Mac/Linux
-export OPENAI_API_KEY=your-api-key-here
+# 2. Get API key from https://platform.openai.com
+
+# 3. Set environment variable
+# Windows:
+set OPENAI_API_KEY=sk-your-key-here
+
+# Mac/Linux:
+export OPENAI_API_KEY=sk-your-key-here
+
+# 4. Run Neuro
+python neuro my_task.neuro
 ```
 
-**Option B: .env File**
-```bash
-# Create .env file
-echo "OPENAI_API_KEY=your-api-key-here" > .env
+**Cost:** ~$0.02 per run
 
-# Install python-dotenv
-pip install python-dotenv
-```
+---
 
-### **3. Run Neuro**
+### **Option 3: No AI (Free)**
+
+Works without any API key! Uses pattern matching.
 
 ```bash
 python neuro my_task.neuro
 ```
 
-Now it uses AI! 🎉
+**Cost:** $0.00
+
+---
+
+**Now AI is enabled!** 🎉
 
 ---
 

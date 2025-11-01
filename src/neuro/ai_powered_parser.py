@@ -1,13 +1,14 @@
 """
 AI-Powered Natural Language Parser for Neuro
 Uses LLMs to understand intent from natural language
+Supports: DeepSeek, OpenAI, and other providers
 """
 import os
 import json
 import re
 from typing import Dict, Any
 
-# Optional: Use OpenAI for AI-powered parsing
+# Optional: Use OpenAI-compatible API for AI-powered parsing
 try:
     from openai import OpenAI
     OPENAI_AVAILABLE = True
@@ -18,13 +19,33 @@ class AIPoweredParser:
     """Uses LLMs to parse natural language into Neuro intent"""
     
     def __init__(self):
-        self.api_key = os.getenv('OPENAI_API_KEY')
-        self.enabled = OPENAI_AVAILABLE and self.api_key is not None
+        # Check for DeepSeek first, then OpenAI
+        self.deepseek_key = os.getenv('DEEPSEEK_API_KEY')
+        self.openai_key = os.getenv('OPENAI_API_KEY')
         
-        if self.enabled:
-            self.client = OpenAI(api_key=self.api_key)
+        # Determine which provider to use
+        if self.deepseek_key and OPENAI_AVAILABLE:
+            self.provider = "deepseek"
+            self.client = OpenAI(
+                api_key=self.deepseek_key,
+                base_url="https://api.deepseek.com"
+            )
+            self.model = "deepseek-chat"
+            self.enabled = True
+            print("✓ AI parsing enabled with DeepSeek")
+        elif self.openai_key and OPENAI_AVAILABLE:
+            self.provider = "openai"
+            self.client = OpenAI(api_key=self.openai_key)
+            self.model = "gpt-4"
+            self.enabled = True
+            print("✓ AI parsing enabled with OpenAI GPT-4")
         else:
-            print("⚠️  AI parsing disabled. Set OPENAI_API_KEY to enable.")
+            self.provider = None
+            self.enabled = False
+            if not OPENAI_AVAILABLE:
+                print("⚠️  Install openai package: pip install openai")
+            else:
+                print("⚠️  AI parsing disabled. Set DEEPSEEK_API_KEY or OPENAI_API_KEY to enable.")
             print("   Falling back to pattern-based parsing.")
     
     def parse_goal(self, goal: str) -> Dict[str, Any]:
@@ -34,9 +55,9 @@ class AIPoweredParser:
             return self._fallback_parse(goal)
         
         try:
-            # Use GPT-4 to understand intent
+            # Use LLM to understand intent (DeepSeek or GPT-4)
             response = self.client.chat.completions.create(
-                model="gpt-4",
+                model=self.model,
                 messages=[
                     {
                         "role": "system",
@@ -59,7 +80,7 @@ Be helpful - infer reasonable defaults."""
             )
             
             parsed = json.loads(response.choices[0].message.content)
-            print("✓ AI-powered parsing enabled")
+            print(f"✓ AI-powered parsing successful ({self.provider})")
             return parsed
             
         except Exception as e:
@@ -96,7 +117,7 @@ Be helpful - infer reasonable defaults."""
         
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4",
+                model=self.model,
                 messages=[
                     {
                         "role": "system",
