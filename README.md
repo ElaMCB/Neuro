@@ -61,6 +61,24 @@ Neuro is a new programming language where you declare what you want to achieve w
 
 ---
 
+## 📐 The Syntax
+
+**Learn the entire language in 5 minutes:**
+
+```neuro
+pipeline FindJobs {
+    goal: "Find AI engineer jobs at remote companies"
+    target_roles: ["ai engineer", "ml engineer"]
+    locations: ["remote", "US"]
+}
+```
+
+**Run it:** `neuro my_task.neuro`
+
+**→ [⚡ Quick Reference](QUICK_REFERENCE.md)** | **[📖 Complete Guide](NEURO_SYNTAX.md)**
+
+---
+
 ##  Get Started
 
 1. **Create a `.neuro` file**
