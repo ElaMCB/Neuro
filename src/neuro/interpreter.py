@@ -5,6 +5,14 @@ No compilation step needed!
 import os
 import sys
 from pathlib import Path
+
+# Load environment variables from .env file if it exists
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv not required
+
 from .parser import NeuroIntentParser
 
 class NeuroInterpreter:

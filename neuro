@@ -7,6 +7,13 @@ import sys
 import os
 from pathlib import Path
 
+# Load environment variables from .env file if it exists
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv not required
+
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / 'src'))
 
