@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+"""
+Neuro - The Intent-Driven Language Interpreter
+Usage: neuro <file.neuro>
+"""
+import sys
+import os
+from pathlib import Path
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent / 'src'))
+
+from neuro.interpreter import NeuroInterpreter
+
+def main():
+    if len(sys.argv) < 2:
+        print("Neuro - The Intent-Driven Language")
+        print("Usage: neuro <file.neuro>")
+        print("\nExample:")
+        print("  neuro my_job_search.neuro")
+        sys.exit(1)
+    
+    neuro_file = sys.argv[1]
+    
+    if not os.path.exists(neuro_file):
+        print(f"Error: File '{neuro_file}' not found")
+        sys.exit(1)
+    
+    # Interpret and execute
+    interpreter = NeuroInterpreter()
+    interpreter.run(neuro_file)
+
+if __name__ == "__main__":
+    main()
+
