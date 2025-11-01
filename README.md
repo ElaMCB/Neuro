@@ -75,7 +75,14 @@ pipeline FindJobs {
 
 **Run it:** `neuro my_task.neuro`
 
-**→ [⚡ Quick Reference](QUICK_REFERENCE.md)** | **[📖 Complete Guide](NEURO_SYNTAX.md)**
+**→ [⚡ Quick Reference](QUICK_REFERENCE.md)** | **[📖 Complete Guide](NEURO_SYNTAX.md)** | **[🧠 AI Integration](AI_INTEGRATION.md)**
+
+<div align="center">
+
+💡 **Optional:** Add your OpenAI API key to enable natural language parsing  
+**→ [Enable AI Features](ENABLE_AI.md)**
+
+</div>
 
 ---
 
