@@ -32,20 +32,20 @@ class AIPoweredParser:
             )
             self.model = "deepseek-chat"
             self.enabled = True
-            print("✓ AI parsing enabled with DeepSeek")
+            print("[OK] AI parsing enabled with DeepSeek")
         elif self.openai_key and OPENAI_AVAILABLE:
             self.provider = "openai"
             self.client = OpenAI(api_key=self.openai_key)
             self.model = "gpt-4"
             self.enabled = True
-            print("✓ AI parsing enabled with OpenAI GPT-4")
+            print("[OK] AI parsing enabled with OpenAI GPT-4")
         else:
             self.provider = None
             self.enabled = False
             if not OPENAI_AVAILABLE:
-                print("⚠️  Install openai package: pip install openai")
+                print("WARNING: Install openai package: pip install openai")
             else:
-                print("⚠️  AI parsing disabled. Set DEEPSEEK_API_KEY or OPENAI_API_KEY to enable.")
+                print("INFO: AI parsing disabled. Set DEEPSEEK_API_KEY or OPENAI_API_KEY to enable.")
             print("   Falling back to pattern-based parsing.")
     
     def parse_goal(self, goal: str) -> Dict[str, Any]:
@@ -80,11 +80,11 @@ Be helpful - infer reasonable defaults."""
             )
             
             parsed = json.loads(response.choices[0].message.content)
-            print(f"✓ AI-powered parsing successful ({self.provider})")
+            print(f"[OK] AI-powered parsing successful ({self.provider})")
             return parsed
             
         except Exception as e:
-            print(f"⚠️  AI parsing failed: {e}")
+            print(f"WARNING: AI parsing failed: {e}")
             print("   Falling back to pattern matching")
             return self._fallback_parse(goal)
     
@@ -142,7 +142,7 @@ Return as JSON: {{"questions": ["q1", "q2"]}}
             return intent
             
         except Exception as e:
-            print(f"⚠️  Clarification generation failed: {e}")
+            print(f"WARNING: Clarification generation failed: {e}")
             return intent
 
 # Example usage
