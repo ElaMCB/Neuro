@@ -11,6 +11,7 @@
 ![Neuro Version](https://img.shields.io/badge/version-0.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-pre--alpha-orange)
+![Neuro Language](https://img.shields.io/badge/language-Neuro-667eea?style=flat)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 
 <br/>
