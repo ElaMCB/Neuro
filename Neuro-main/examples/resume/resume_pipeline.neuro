@@ -1,9 +1,0 @@
-pipeline ResumeOptimization {
-    goal: "Generate resume variants optimized for Prompt Engineer roles"
-    target_roles: ["Prompt Engineer"]
-    constraints: {
-        maintain_current_roles: true,
-        discreet_transition: true
-    }
-    actions: [shorten_summary(), add_prompt_keywords(), emit_variants()]
-}

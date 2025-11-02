@@ -46,6 +46,16 @@ my_job_search_report.html
 *.html
 !view_results.html
 
+# Generated JSON results
+*_results.json
+ai_ml_results.json
+improved_results.json
+my_downloaded_results.json
+
+# Duplicate directories (from GitHub downloads)
+Neuro-main/
+*-main/
+
 # Test files
 test_*.py
 *_test.py

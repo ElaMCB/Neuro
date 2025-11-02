@@ -76,12 +76,12 @@ pipeline FindJobs {
 
 **Run it:** `neuro my_task.neuro`
 
-**→ [⚡ Quick Reference](QUICK_REFERENCE.md)** | **[📖 Complete Guide](NEURO_SYNTAX.md)** | **[🧠 AI Integration](AI_INTEGRATION.md)**
+**→ [⚡ Quick Reference](docs/QUICK_REFERENCE.md)** | **[📖 Complete Guide](docs/NEURO_SYNTAX.md)** | **[🧠 AI Integration](docs/AI_INTEGRATION.md)**
 
 <div align="center">
 
 💡 **Optional:** Enable AI-powered natural language parsing  
-**→ [DeepSeek Setup](DEEPSEEK_SETUP.md)** (Recommended - 200x cheaper!) | **[OpenAI Setup](ENABLE_AI.md)**
+**→ [DeepSeek Setup](docs/DEEPSEEK_SETUP.md)** (Recommended - 200x cheaper!) | **[OpenAI Setup](docs/ENABLE_AI.md)**
 
 </div>
 
@@ -172,6 +172,21 @@ pipeline PredictiveMaintenance {
 
 ---
 
+##  Repository Structure
+
+```
+Neuro/
+├── src/              # Core language implementation
+├── examples/         # .neuro example files and demos
+├── docs/             # Comprehensive documentation
+├── scripts/          # Utility scripts (job search, etc.)
+├── tests/            # Test suite
+├── install_neuro.ps1 # One-command installation
+├── neuro            # Main executable (Unix)
+├── neuro.bat        # Main executable (Windows)
+└── README.md        # You are here!
+```
+
 ##  Documentation
 
 <div align="center">
@@ -179,6 +194,7 @@ pipeline PredictiveMaintenance {
 - 📋 [Project Roadmap](ROADMAP.md) - Development plans and timeline
 - 🤝 [Contribution Guide](CONTRIBUTING.md) - How to get involved  
 - 📖 [Examples](examples/) - Neuro code examples
+- 📚 [Full Documentation](docs/) - Complete guides and references
 - 💬 [Join Discussions](https://github.com/ElaMCB/Neuro/discussions) - Help shape the language
 
 </div>
