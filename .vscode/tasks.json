@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Neuro File",
+      "type": "shell",
+      "command": "py",
+      "args": ["-3.11", "${workspaceFolder}/neuro", "${file}"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Neuro with AI (DeepSeek)",
+      "type": "shell",
+      "command": "py",
+      "args": ["-3.11", "${workspaceFolder}/neuro", "${file}"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": [],
+      "dependsOn": []
+    },
+    {
+      "label": "Generate Job Search Report",
+      "type": "shell",
+      "command": "py",
+      "args": ["-3.11", "convert_my_results.py", "improved_results.json"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ]
+}
+

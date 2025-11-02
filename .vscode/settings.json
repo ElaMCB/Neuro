@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "*.neuro": "neuro"
+  },
+  "editor.semanticHighlighting.enabled": true,
+  "[neuro]": {
+    "editor.defaultFormatter": null,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "on"
+  }
+}
+
