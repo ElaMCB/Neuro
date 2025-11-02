@@ -1,0 +1,7 @@
+# GitHub Linguist Configuration for Neuro
+# Tells GitHub to recognize .neuro files as the Neuro language
+
+overrides:
+  "*.neuro": "Neuro"
+  "**/*.neuro": "Neuro"
+

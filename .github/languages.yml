@@ -1,0 +1,12 @@
+# Custom Language Definition for GitHub
+# Defines Neuro as a programming language
+
+Neuro:
+  type: programming
+  color: "#667eea"
+  extensions:
+    - ".neuro"
+  tm_scope: source.neuro
+  ace_mode: text
+  language_id: 1000000001
+
