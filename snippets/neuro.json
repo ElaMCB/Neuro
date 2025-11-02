@@ -1,0 +1,71 @@
+{
+  "Pipeline": {
+    "prefix": "pipeline",
+    "body": [
+      "pipeline ${1:Name} {",
+      "\tgoal: \"${2:What you want to achieve}\"",
+      "\t$0",
+      "}"
+    ],
+    "description": "Create a new Neuro pipeline"
+  },
+  "Job Search Pipeline": {
+    "prefix": "job-search",
+    "body": [
+      "pipeline ${1:FindJobs} {",
+      "\tgoal: \"Find ${2:ai engineer} jobs at ${3:remote} companies\"",
+      "\ttarget_roles: [\"${4:ai engineer}\", \"${5:ml engineer}\"]",
+      "\tlocations: [\"${6:remote}\", \"${7:US}\"]",
+      "\tskills: [\"${8:python}\", \"${9:pytorch}\"]",
+      "}"
+    ],
+    "description": "Job search pipeline template"
+  },
+  "Model Training Pipeline": {
+    "prefix": "train-model",
+    "body": [
+      "pipeline ${1:TrainModel} {",
+      "\tgoal: \"${2:Train a classifier}\"",
+      "\tdata: \"${3:data.csv}\"",
+      "\tconstraints: {",
+      "\t\taccuracy: >${4:90}%,",
+      "\t\tlatency: <${5:100}ms",
+      "\t}",
+      "}"
+    ],
+    "description": "Model training pipeline template"
+  },
+  "Data Pipeline": {
+    "prefix": "data-pipeline",
+    "body": [
+      "pipeline ${1:ProcessData} {",
+      "\tgoal: \"${2:Process and analyze data}\"",
+      "\tinput: \"${3:data.csv}\"",
+      "\toutput: \"${4:results.csv}\"",
+      "\toperations: [${5:clean()}, ${6:transform()}]",
+      "}"
+    ],
+    "description": "Data processing pipeline template"
+  },
+  "Goal": {
+    "prefix": "goal",
+    "body": "goal: \"${1:What you want to achieve}\"",
+    "description": "Pipeline goal statement"
+  },
+  "Target Roles": {
+    "prefix": "roles",
+    "body": "target_roles: [\"${1:role1}\", \"${2:role2}\"]",
+    "description": "Target job roles"
+  },
+  "Locations": {
+    "prefix": "locations",
+    "body": "locations: [\"${1:remote}\", \"${2:US}\"]",
+    "description": "Job locations"
+  },
+  "Skills": {
+    "prefix": "skills",
+    "body": "skills: [\"${1:python}\", \"${2:pytorch}\"]",
+    "description": "Skills list"
+  }
+}
+

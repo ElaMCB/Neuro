@@ -1,0 +1,104 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Neuro",
+  "scopeName": "source.neuro",
+  "fileTypes": ["neuro"],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#pipeline"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#functions"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.neuro",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.neuro",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "pipeline": {
+      "patterns": [
+        {
+          "match": "\\b(pipeline)\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\{",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neuro"
+            },
+            "2": {
+              "name": "entity.name.type.class.neuro"
+            }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.neuro",
+          "match": "\\b(goal|data|model|constraints|actions|deploy|input|output|filters|target_roles|locations|skills|experience|company_policy|targets|for_each_result|run_pipeline)\\b"
+        },
+        {
+          "name": "constant.language.neuro",
+          "match": "\\b(true|false|null)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.neuro",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.neuro",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.neuro",
+          "match": "\\b([0-9]+\\.?[0-9]*)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b([a-z_][a-z0-9_]*)\\s*\\(",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.neuro"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
