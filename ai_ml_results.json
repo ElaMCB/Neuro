@@ -1,5 +1,5 @@
 {
-  "search_date": "2025-11-01T12:45:45.366611",
+  "search_date": "2025-11-02T13:19:29.087980",
   "profile": {
     "name": "Elena Mereanu",
     "email": "elena.mereanu@gmail.com",
@@ -35,18 +35,6 @@
       "description": "At MCG, we lead the healthcare community to deliver patient-focused care. We have a mission-driven team of talented physicians and technical experts developing our evidence-based content and innovating our products to accelerate improvements in healthcare. If you are driven to enhance the US healthcare system, MCG is eager to have you join our team. We cultivate a work environment that nurtures personal and professional growth, and this is a thrilling time to become a part of our organization. W",
       "platform": "remoteok",
       "posted_date": "2025-10-31T00:06:20+00:00",
-      "match_score": 90.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "Support Enablement Program Manager Tech Fluency and AI",
-      "company": "Samsara",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-support-enablement-program-manager-tech-fluency-and-ai-samsara-1128634",
-      "description": "As a Support Enablement Program Manager, you will be responsible for driving the success of our support teams through effective training and enablement programs. You will work closely with cross-functional teams to develop and implement strategies that enhance the skills and knowledge of our support staff. Your role will involve analyzing performance metrics, identifying training needs, and creating engaging learning experiences. You will also be responsible for managing projects related to supp",
-      "platform": "remoteok",
-      "posted_date": "2025-10-29T16:01:03+00:00",
       "match_score": 90.0,
       "required_skills": [],
       "preferred_skills": []
@@ -107,18 +95,6 @@
       "description": "   About Cognite     Embark on a transformative journey with Cognite, a global SaaS forerunner in leveraging AI and data to unravel complex business challenges through our cutting-edge offerings including Cognite Atlas AI, an industrial agent workbench, and the Cognite Data Fusion (CDF) platform. We were awarded the 2022 Technology Innovation Leader for Global Digital Industrial Platforms &amp; Cognite was recognized as 2024 Microsoft Energy and Resources Partner of the Year. In the realm of ind",
       "platform": "remoteok",
       "posted_date": "2025-10-30T00:05:38+00:00",
-      "match_score": 85.0,
-      "required_skills": [],
-      "preferred_skills": []
-    },
-    {
-      "title": "Computer Vision Applied Scientist",
-      "company": "Pano AI",
-      "location": "Remote",
-      "url": "https://remoteok.comhttps://remoteOK.com/remote-jobs/remote-computer-vision-applied-scientist-pano-ai-1128650",
-      "description": "  Who we are        The problem:  Every minute matters in fire response.&nbsp; As climate change amplifies the intensity of wildfiresâwith longer fire seasons, drier fuels, and faster windsânew ignitions spread faster and put more communities at risk. Today, most wildfires are detected by bystanders and reported via 911, meaning it can take hours to detect a fire, verify its exact location and size, and dispatch first responders. Fire authorities need a faster way to detect, confirm, and pin",
-      "platform": "remoteok",
-      "posted_date": "2025-10-30T00:02:26+00:00",
       "match_score": 85.0,
       "required_skills": [],
       "preferred_skills": []
@@ -224,11 +200,11 @@
     }
   ],
   "summary": {
-    "total_jobs": 15,
-    "high_matches": 15,
+    "total_jobs": 13,
+    "high_matches": 13,
     "medium_matches": 0,
     "low_matches": 0,
-    "real_jobs": 8,
+    "real_jobs": 6,
     "search_links": 7
   }
 }

@@ -87,11 +87,28 @@ pipeline FindJobs {
 
 ---
 
+##  Installation
+
+**One-time setup (Windows):**
+
+```powershell
+git clone https://github.com/ElaMCB/Neuro.git
+cd Neuro
+powershell -ExecutionPolicy Bypass -File install_neuro.ps1
+```
+
+Close and reopen your terminal. Done! Neuro is now a command like `node`, `python`, or `ruby`.
+
+**→ See [NEURO_IS_NOW_REAL.md](NEURO_IS_NOW_REAL.md) for details**
+
+---
+
 ##  Get Started
 
 1. **Create a `.neuro` file**
 2. **Describe your AI task** in plain English + simple structure
-3. **Neuro handles implementation** automatically
+3. **Run it:** `neuro your_file.neuro`
+4. **Get results** - Neuro handles everything automatically
 
 ---
 
